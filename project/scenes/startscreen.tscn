@@ -1,8 +1,9 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://meshes/startsword.dae" type="PackedScene" id=1]
 [ext_resource path="res://img/playfont.tres" type="DynamicFont" id=2]
 [ext_resource path="res://scenes/startscreen.gd" type="Script" id=3]
+[ext_resource path="res://img/Cocogoose Pro Semilight-trial.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="Environment" id=1]
 background_mode = 1
@@ -11,15 +12,20 @@ background_energy = 0.0
 ambient_light_energy = 0.0
 ssao_enabled = true
 
-[sub_resource type="StyleBoxEmpty" id=9]
+[sub_resource type="StyleBoxEmpty" id=2]
 
-[sub_resource type="StyleBoxEmpty" id=10]
+[sub_resource type="StyleBoxEmpty" id=3]
 
-[sub_resource type="StyleBoxEmpty" id=11]
+[sub_resource type="StyleBoxEmpty" id=4]
 
-[sub_resource type="StyleBoxEmpty" id=12]
+[sub_resource type="StyleBoxEmpty" id=5]
 
-[sub_resource type="Shader" id=2]
+[sub_resource type="DynamicFont" id=11]
+size = 80
+use_mipmaps = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="Shader" id=6]
 code = "// https://www.gdquest.com/tutorial/godot/shaders/flag-shader-3d/
 shader_type spatial;
 render_mode unshaded;
@@ -52,21 +58,21 @@ void vertex(){
 	
 }"
 
-[sub_resource type="OpenSimplexNoise" id=6]
+[sub_resource type="OpenSimplexNoise" id=7]
 
-[sub_resource type="NoiseTexture" id=3]
+[sub_resource type="NoiseTexture" id=8]
 seamless = true
-noise = SubResource( 6 )
+noise = SubResource( 7 )
 
-[sub_resource type="ShaderMaterial" id=4]
-shader = SubResource( 2 )
+[sub_resource type="ShaderMaterial" id=9]
+shader = SubResource( 6 )
 shader_param/uv_offset_scale = Vector2( -0.2, -0.1 )
 shader_param/time_scale = Vector2( 0.3, 0 )
 shader_param/face_distortion = 0.5
-shader_param/uv_offset_texture = SubResource( 3 )
+shader_param/uv_offset_texture = SubResource( 8 )
 
-[sub_resource type="PlaneMesh" id=5]
-material = SubResource( 4 )
+[sub_resource type="PlaneMesh" id=10]
+material = SubResource( 9 )
 size = Vector2( 5, 0.3 )
 subdivide_width = 32
 subdivide_depth = 32
@@ -81,7 +87,7 @@ __meta__ = {
 environment = SubResource( 1 )
 
 [node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.10877, 9.81965 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.309377, 3.12804, 9.81965 )
 fov = 35.0
 
 [node name="UI" type="Control" parent="."]
@@ -99,17 +105,17 @@ __meta__ = {
 
 [node name="play_button" type="Button" parent="UI"]
 margin_left = -81.0
-margin_top = 103.0
+margin_top = 135.0
 margin_right = 89.0
-margin_bottom = 167.0
-custom_styles/hover = SubResource( 9 )
-custom_styles/pressed = SubResource( 10 )
-custom_styles/focus = SubResource( 11 )
-custom_styles/normal = SubResource( 12 )
+margin_bottom = 199.0
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 3 )
+custom_styles/focus = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_color_hover = Color( 1, 1, 1, 0.584314 )
-custom_colors/font_color_pressed = Color( 0.584314, 0.823529, 1, 0.607843 )
+custom_colors/font_color_hover = Color( 0.847059, 0.941176, 1, 0.584314 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 0.607843 )
 text = "PLAY"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -124,6 +130,7 @@ custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 0.305882, 0.772549, 1, 0.647059 )
 text = "PLAY"
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
@@ -133,13 +140,27 @@ anchor_right = 1.0
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 0.305882, 0.772549, 1, 0.309804 )
 text = "PLAY"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI"]
+margin_left = -284.0
+margin_top = -175.0
+margin_right = 353.0
+margin_bottom = -95.0
+custom_fonts/font = SubResource( 11 )
+custom_colors/font_color = Color( 0.745098, 0.745098, 0.745098, 1 )
+text = "TITLE (RONIN?)"
+align = 1
 
 [node name="startsword" parent="." instance=ExtResource( 1 )]
-transform = Transform( 0.899344, 0.437241, 0, -0.437241, 0.899344, 0, 0, 0, 1, -4.50901, -3.06997, 0.817822 )
+transform = Transform( 0.899344, 0.437241, 0, -0.437241, 0.899344, 0, 0, 0, 1, -4.81768, -3.06997, 0.817822 )
 
 [node name="cloth" type="MeshInstance" parent="startsword"]
 transform = Transform( 0.912458, 0.203846, 0.354777, 0.408698, -0.412457, -0.814153, -0.0196314, 0.887877, -0.459661, 2.32921, 8.22246, 0.0683081 )
-mesh = SubResource( 5 )
+mesh = SubResource( 10 )
 material/0 = null
 [connection signal="mouse_entered" from="UI/play_button" to="." method="_on_play_button_mouse_entered"]
 [connection signal="pressed" from="UI/play_button" to="." method="_on_play_button_pressed"]
