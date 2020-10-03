@@ -8,9 +8,20 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Spatial",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://objects/enemy/Enemy.gd"
+}, {
+"base": "KinematicBody",
+"class": "Hero",
+"language": "GDScript",
+"path": "res://objects/hero/Hero.gd"
+} ]
 _global_script_class_icons={
-
+"Enemy": "",
+"Hero": ""
 }
 
 [application]
