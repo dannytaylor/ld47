@@ -12,7 +12,7 @@ enum EnemyKillState {
 }
 var kill_state = EnemyKillState.IDLE
 
-onready var start_position : Vector3 = transform.origin
+onready var start_transform : Transform = transform
 
 func _set_highlight(_highlight):
 	highlight = _highlight
@@ -24,28 +24,40 @@ func _ready():
 	
 	#Listen for any players rewinding
 	var player = get_tree().get_nodes_in_group("player")[0]
-	player.connect("rewind", self, "_on_player_rewind")
+	get_parent().connect("rewind", self, "_on_GameController_rewind")
 	
-	pass # Replace with function body.
 
 func rewind():
 	
-	#TODO: If we are dying/dead play the animation backwards
-	
-	#TODO: If we caught the player, play animation backwards
+	#Stop animations
+	$Area.visible = true
+	$Area.monitoring = true
+	$AnimationPlayer.stop()
 	
 	#Reset position just in case
-	transform.origin = start_position
-	#$AnimationPlayer.play("idle")
+	transform = start_transform
+	
 
 func kill():
 	#Mark as dead
+	$Area.visible = false
+	$Area.monitoring = false
 	kill_state = EnemyKillState.PREVIOUSLY_KILLED
 	
 	#Play death animation
 	$AnimationPlayer.play("die")
 
-func _on_player_rewind(successful):
+func _on_GameController_rewind():
 	
 	#Kick off the rewind sequence
 	rewind()
+
+
+func _on_Area_body_entered(body):
+	
+	#Was it the player?
+	if body.is_in_group("player"):
+		#We got 'em
+		body.caught(self)
+	
+	pass # Replace with function body.

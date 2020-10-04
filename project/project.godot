@@ -30,6 +30,10 @@ config/name="ld47"
 run/main_scene="res://scenes/DevinTest.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=800
+
 [input]
 
 player_move_up={
