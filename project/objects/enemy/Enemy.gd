@@ -13,6 +13,7 @@ enum EnemyKillState {
 var kill_state = EnemyKillState.IDLE
 
 onready var start_transform : Transform = transform
+onready var player = get_tree().get_nodes_in_group("player")[0]
 
 func _set_highlight(_highlight):
 	highlight = _highlight
@@ -23,8 +24,16 @@ func _set_highlight(_highlight):
 func _ready():
 	
 	#Listen for any players rewinding
-	var player = get_tree().get_nodes_in_group("player")[0]
 	get_parent().connect("rewind", self, "_on_GameController_rewind")
+	set_process(true)
+	$enemy/AnimationPlayer.play("stand")
+func _process(delta):
+	
+	#Update the radius shader
+	var shader = $MeshInstance.mesh.surface_get_material(0)
+	shader.set_shader_param("SourcePosition", player.global_transform.origin)
+	shader.set_shader_param("MaxDistance", player.view_distance)
+	
 	
 
 func rewind():
@@ -32,10 +41,11 @@ func rewind():
 	#Stop animations
 	$Area.visible = true
 	$Area.monitoring = true
-	$AnimationPlayer.stop()
 	
 	#Reset position just in case
 	transform = start_transform
+	$CPUParticles.emitting = false
+	$CPUParticles.visible = false
 	
 
 func kill():
@@ -45,7 +55,9 @@ func kill():
 	kill_state = EnemyKillState.PREVIOUSLY_KILLED
 	
 	#Play death animation
-	$AnimationPlayer.play("die")
+	$enemy/AnimationPlayer.play("death")
+	$CPUParticles.emitting = true
+	$CPUParticles.visible = true
 
 func _on_GameController_rewind():
 	
@@ -59,5 +71,6 @@ func _on_Area_body_entered(body):
 	if body.is_in_group("player"):
 		#We got 'em
 		body.caught(self)
+		$enemy/AnimationPlayer.play("spotted")
 	
 	pass # Replace with function body.

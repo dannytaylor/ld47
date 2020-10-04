@@ -11,6 +11,8 @@ var target_enemy : Enemy
 
 onready var start_position : Vector3 = transform.origin
 
+export(float, 50) var view_distance = 10
+
 class PlayerInputs:
 	
 	var up = false
@@ -62,6 +64,7 @@ class PlayerInputs:
 		return false
 	
 	func update_with_event(event: InputEventKey):
+		
 		if event.is_action_pressed("player_move_up"):
 			up = true
 		elif event.is_action_released("player_move_up"):
@@ -81,7 +84,7 @@ class PlayerInputs:
 			right = true
 		elif event.is_action_released("player_move_right"):
 			right = false
-	
+		
 	func to_vector() -> Vector3:
 		
 		#Apply inputs
@@ -97,6 +100,12 @@ func _ready():
 	set_process_unhandled_key_input(true)
 	set_physics_process(true)
 	get_parent().connect("rewind", self, "_on_GameController_rewind")
+	
+	$character/AnimationPlayer.play("char_idle")
+	set_process(true)
+
+func _process(delta):
+	pass
 
 func _physics_process(delta):
 	if player_controllable:
@@ -147,8 +156,10 @@ func _animate_slash():
 	player_controllable = false
 	look_at(target_enemy.global_transform.origin, Vector3.UP)
 	
+	$character/AnimationPlayer.play("char_atk")
+	
 	#Pause for dramatic effect
-	$Timer.start(1)
+	$Timer.start()
 	yield($Timer, "timeout")
 	
 	#Slide through the enemy
@@ -190,4 +201,6 @@ func _unhandled_key_input(event):
 	_handle_slash_input(event)
 	
 	if player_controllable:
+		
+		$character/AnimationPlayer.play("char_run")
 		player_inputs.update_with_event(event)
