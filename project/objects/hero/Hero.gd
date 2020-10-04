@@ -122,12 +122,14 @@ func _process_movement(delta):
 func _apply_movement():
 	var direction = player_inputs.to_vector()
 	if direction == Vector3.ZERO:
+		$character/AnimationPlayer.play("char_idle")
 		return
 	
 	#Face that direction
 	look_at(transform.origin + direction, Vector3.UP)
 	
 	#Move in the direction
+	$character/AnimationPlayer.play("char_run")
 	var velocity = direction * speed
 	move_and_slide(velocity)
 
@@ -162,9 +164,7 @@ func _animate_slash():
 	$Timer.start()
 	yield($Timer, "timeout")
 	
-	#Slide through the enemy
-	var direction = transform.basis.z
-	var slide_distance = 2
+	target_enemy.kill()
 	
 	#Pause for dramatic effect
 	$Timer.start(1)
@@ -202,5 +202,4 @@ func _unhandled_key_input(event):
 	
 	if player_controllable:
 		
-		$character/AnimationPlayer.play("char_run")
 		player_inputs.update_with_event(event)

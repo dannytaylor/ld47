@@ -29,8 +29,16 @@ func _process_movement(delta : float):
 		#If we are done, stop time and kill our target
 		if done:
 			playback_paused = true
-			target_enemy.kill()
-		
+			_animate_slash()
+
+func _animate_slash():
+	
+	#Face towards the enemy
+	player_controllable = false
+	look_at(target_enemy.global_transform.origin, Vector3.UP)
+	
+	$character/AnimationPlayer.play("char_atk")
+	target_enemy.kill()
 
 func _check_enemy():
 	return

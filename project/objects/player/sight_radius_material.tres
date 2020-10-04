@@ -26,6 +26,8 @@ uniform_name = "Color"
 code = "shader_type spatial;
 render_mode cull_disabled, specular_schlick_ggx;
 
+uniform vec3 SourcePosition;
+uniform float MaxDistance;
 
 
 
@@ -35,7 +37,29 @@ void vertex() {
 }
 
 void fragment() {
+// VectorUniform:6
+	vec3 n_out6p0 = SourcePosition;
+
+// Input:3
+	mat4 n_out3p0 = CAMERA_MATRIX;
+
+// Input:2
+	vec3 n_out2p0 = VERTEX;
+
+// TransformVectorMult:4
+	vec3 n_out4p0 = (n_out3p0 * vec4(n_out2p0, 1.0)).xyz;
+
+// Distance:5
+	float n_out5p0 = distance(n_out6p0, n_out4p0);
+
+// ScalarUniform:7
+	float n_out7p0 = MaxDistance;
+
+// Compare:8
+	bool n_out8p0 = n_out5p0<=n_out7p0;
+
 // Output:0
+	ALPHA = n_out8p0 ? 1.0 : 0.0;
 
 }
 
@@ -44,7 +68,7 @@ void light() {
 
 }
 "
-graph_offset = Vector2( -613.256, 105.5 )
+graph_offset = Vector2( -370, -1.25 )
 modes/cull = 2
 nodes/fragment/2/node = SubResource( 1 )
 nodes/fragment/2/position = Vector2( -520, 300 )
@@ -61,9 +85,11 @@ nodes/fragment/7/position = Vector2( -100, 280 )
 nodes/fragment/8/node = SubResource( 7 )
 nodes/fragment/8/position = Vector2( 100, 180 )
 nodes/fragment/9/node = SubResource( 8 )
-nodes/fragment/9/position = Vector2( 100, 40 )
-nodes/fragment/connections = PoolIntArray( 3, 0, 4, 0, 2, 0, 4, 1, 4, 0, 5, 1, 6, 0, 5, 0, 7, 0, 8, 1, 5, 0, 8, 0 )
+nodes/fragment/9/position = Vector2( 100, 60 )
+nodes/fragment/connections = PoolIntArray( 3, 0, 4, 0, 2, 0, 4, 1, 4, 0, 5, 1, 6, 0, 5, 0, 7, 0, 8, 1, 5, 0, 8, 0, 8, 0, 0, 1 )
 
 [resource]
 resource_name = "Player Sight Material"
 shader = SubResource( 9 )
+shader_param/SourcePosition = Vector3( -3.978, 1.795, 0 )
+shader_param/MaxDistance = 4.432
