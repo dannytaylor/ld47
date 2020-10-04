@@ -45,7 +45,7 @@ func kill():
 	kill_state = EnemyKillState.PREVIOUSLY_KILLED
 	
 	#Play death animation
-	$AnimationPlayer.play("die")
+	$AnimationPlayer.play("spotted")
 
 func _on_GameController_rewind():
 	
