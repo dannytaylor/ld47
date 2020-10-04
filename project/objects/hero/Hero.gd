@@ -90,16 +90,20 @@ class PlayerInputs:
 		var vector = Vector3(x, 0, z)
 		return vector
 var player_inputs = PlayerInputs.new()
+var player_controllable = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_process_unhandled_key_input(true)
 	set_physics_process(true)
+	get_parent().connect("rewind", self, "_on_GameController_rewind")
 
 func _physics_process(delta):
-	_process_movement(delta)
+	if player_controllable:
+		_process_movement(delta)
 	
-	_check_enemy()
+	if player_controllable:
+		_check_enemy()
 
 func _process_movement(delta):
 	#Determine the angle of movement based on the player inputs
@@ -134,25 +138,56 @@ func _check_enemy():
 			enemy.highlight = false
 
 func rewind(target=null):
-	#TODO: This will be painful
+	#Announce we've begun a rewind
+	emit_signal("rewind", target)
+
+func _animate_slash():
+	
+	#Face towards the enemy
+	player_controllable = false
+	look_at(target_enemy.global_transform.origin, Vector3.UP)
+	
+	#Pause for dramatic effect
+	$Timer.start(1)
+	yield($Timer, "timeout")
+	
+	#Slide through the enemy
+	var direction = transform.basis.z
+	var slide_distance = 2
+	
+	#Pause for dramatic effect
+	$Timer.start(1)
+	yield($Timer, "timeout")
+	
+	#Finally, rewind
+	rewind(target_enemy)
+
+func caught(enemy):
+	
+	#We want to rewind now that we've been caught
+	rewind()
+
+func _on_GameController_rewind():
+	
+	#Reset controls
+	player_controllable = true
+	player_inputs = PlayerInputs.new()
 	
 	#Reset back to the start position
 	transform.origin = start_position
-	
-	#Announce we've begun a rewind
-	emit_signal("rewind", target)
-	player_inputs = PlayerInputs.new()
+
 
 func _handle_slash_input(event):
 	
-	if event.is_action_pressed("player_slash"):
+	if player_controllable and event.is_action_pressed("player_slash"):
 		#Do we have a target?
 		if target_enemy:
 			print("Player slashed!")
-			rewind(target_enemy)
+			_animate_slash()
 
 func _unhandled_key_input(event):
 	
 	_handle_slash_input(event)
 	
-	player_inputs.update_with_event(event)
+	if player_controllable:
+		player_inputs.update_with_event(event)

@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/mid-slates/woodblock.ogg" type="AudioStream" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Control
+signal complete
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	
+	#When we appear, play sound
+	$TextureRect.visible = false
+	$AudioStreamPlayer.play()
+	yield($AudioStreamPlayer, \"finished\")
+	
+	#Pause a bit
+	$Timer.start(0.25)
+	yield($Timer, \"timeout\")
+	
+	#Then play sound again and show text
+	$AudioStreamPlayer.play()
+	$TextureRect.visible = true
+	yield($AudioStreamPlayer, \"finished\")
+	
+	#Wait some more
+	$Timer.start(0.5)
+	yield($Timer, \"timeout\")
+	
+	emit_signal(\"complete\")
+"
+
+[node name="MidSlate" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+pitch_scale = 1.39
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]

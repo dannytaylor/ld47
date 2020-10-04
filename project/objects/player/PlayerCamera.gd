@@ -25,4 +25,3 @@ func _process(delta):
 	
 	#Face towards the player
 	look_at(target.global_transform.origin, Vector3.UP)
-	
