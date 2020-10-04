@@ -6,7 +6,7 @@ onready var play_shadow2 = $UI/play_button/play_shadow2
 onready var black_material = preload("res://meshes/black.material")
 
 var text_speed = 40
-var text_offset = 240
+var text_offset = 160
 
 func _ready():
 	set_process(true)
@@ -31,7 +31,7 @@ func _on_play_button_mouse_entered():
 
 func _on_play_button_pressed():
 	$WorldEnvironment.environment.background_color = Color(1,1,1,1)
-	$UI/Label.hide()
+	$UI/Title.hide()
 	$UI/play_button.hide()
 	
 	$startsword/Cube.material_override = black_material

@@ -13,3 +13,105 @@ material/0 = ExtResource( 2 )
 
 [node name="DelayTimer" type="Timer" parent="." index="3"]
 one_shot = true
+
+[node name="Head001" parent="character/Armature/Bone/Bone001/Bone002/Bone003/Bone004" index="0"]
+transform = Transform( 1, -1.71713e-09, -2.37953e-07, -5.82077e-11, 1, 1.11759e-08, 2.38884e-07, -1.49012e-08, 1, 0.00456487, 0.465998, -0.0298321 )
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 2 )
+
+[node name="Neck" parent="character/Armature/Bone/Bone001/Bone002/Bone003" index="1"]
+material/0 = ExtResource( 2 )
+
+[node name="Arm L Hand" parent="character/Armature/Bone/Bone001/Bone002/Bone005/Bone006/Bone007" index="0"]
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 2 )
+
+[node name="Arm L" parent="character/Armature/Bone/Bone001/Bone002/Bone005/Bone006" index="1"]
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 2 )
+
+[node name="Gauntlet" parent="character/Armature/Bone/Bone001/Bone002/Bone005/Bone006" index="2"]
+material/0 = ExtResource( 2 )
+
+[node name="Arm L Forearm" parent="character/Armature/Bone/Bone001/Bone002/Bone005" index="1"]
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 2 )
+
+[node name="Shoulder L" parent="character/Armature/Bone/Bone001/Bone002/Bone005" index="2"]
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 2 )
+
+[node name="Arm R Hand" parent="character/Armature/Bone/Bone001/Bone002/Bone011/Bone012/Bone013" index="0"]
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 2 )
+
+[node name="Sword" parent="character/Armature/Bone/Bone001/Bone002/Bone011/Bone012/Bone013" index="1"]
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 2 )
+
+[node name="Arm R" parent="character/Armature/Bone/Bone001/Bone002/Bone011/Bone012" index="1"]
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 2 )
+
+[node name="Arm R Foerarm" parent="character/Armature/Bone/Bone001/Bone002/Bone011" index="1"]
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 2 )
+
+[node name="Shoulder R" parent="character/Armature/Bone/Bone001/Bone002/Bone011" index="2"]
+material/0 = ExtResource( 2 )
+
+[node name="Star 02" parent="character/Armature/Bone/Bone001/Bone002" index="3"]
+material/0 = ExtResource( 2 )
+
+[node name="Star 03" parent="character/Armature/Bone/Bone001/Bone002" index="4"]
+transform = Transform( 1, 1.58034e-08, -2.37487e-07, 3.23053e-09, 0.998013, 0.0630059, 2.37953e-07, -0.0630058, 0.998013, 0.1469, 0.69635, 0.380492 )
+material/0 = ExtResource( 2 )
+
+[node name="Star 04" parent="character/Armature/Bone/Bone001/Bone002" index="5"]
+material/0 = ExtResource( 2 )
+
+[node name="Torso Chest" parent="character/Armature/Bone/Bone001/Bone002" index="6"]
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 2 )
+
+[node name="Harikari" parent="character/Armature/Bone/Bone001" index="1"]
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 2 )
+
+[node name="Star 01" parent="character/Armature/Bone/Bone001" index="2"]
+material/0 = ExtResource( 2 )
+
+[node name="Torso Waist" parent="character/Armature/Bone/Bone001" index="3"]
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 2 )
+material/2 = ExtResource( 2 )
+
+[node name="Legs L Foot" parent="character/Armature/Bone/Bone008/Bone009/Bone010" index="0"]
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 2 )
+
+[node name="Legs L Knee Shin" parent="character/Armature/Bone/Bone008/Bone009" index="1"]
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 2 )
+
+[node name="Legs L Thigh" parent="character/Armature/Bone/Bone008" index="1"]
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 2 )
+
+[node name="Legs R Foot" parent="character/Armature/Bone/Bone014/Bone015/Bone016" index="0"]
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 2 )
+
+[node name="Legs R Knee Shin" parent="character/Armature/Bone/Bone014/Bone015" index="1"]
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 2 )
+
+[node name="Legs R Thigh" parent="character/Armature/Bone/Bone014" index="1"]
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 2 )
+
+[node name="Legs Hips" parent="character/Armature/Bone" index="3"]
+material/0 = ExtResource( 2 )
+material/1 = ExtResource( 2 )
+
+[editable path="character"]

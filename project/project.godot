@@ -27,7 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="ld47"
-run/main_scene="res://scenes/DevinTest.tscn"
+run/main_scene="res://scenes/startscreen.tscn"
 config/icon="res://icon.png"
 
 [display]

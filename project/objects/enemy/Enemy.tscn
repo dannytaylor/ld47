@@ -9,22 +9,22 @@ material = ExtResource( 3 )
 
 [sub_resource type="PrismMesh" id=2]
 
-[sub_resource type="SpatialMaterial" id=5]
+[sub_resource type="SpatialMaterial" id=3]
 flags_transparent = true
 flags_unshaded = true
 albedo_color = Color( 1, 0.72549, 0, 0.294118 )
 
-[sub_resource type="ConvexPolygonShape" id=6]
+[sub_resource type="ConvexPolygonShape" id=4]
 points = PoolVector3Array( 0, 0, 0, 3, 0, 10, 2, 0, 11.5, 1, 0, 11.85, 0, 0, 12, -1, 0, 11.85, -2, 0, 11.5, -3, 0, 10, 0, 1.352, 0 )
 
-[sub_resource type="SpatialMaterial" id=7]
+[sub_resource type="SpatialMaterial" id=5]
 params_cull_mode = 2
 albedo_color = Color( 1, 0, 0, 1 )
 
-[sub_resource type="QuadMesh" id=8]
-material = SubResource( 7 )
+[sub_resource type="QuadMesh" id=6]
+material = SubResource( 5 )
 
-[sub_resource type="Curve" id=9]
+[sub_resource type="Curve" id=7]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0150877, 0, 0, Vector2( 0.813291, 0.678409 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -0.0885758, 0.0, 0, 0 ]
 
 [node name="Enemy" type="Spatial" groups=[
@@ -41,6 +41,7 @@ material/0 = null
 
 [node name="DirectionIndicator" type="MeshInstance" parent="."]
 transform = Transform( 0.5, 0, 0, 0, -8.14603e-08, -0.5, 0, 0.5, -8.14603e-08, 0, 2, 2 )
+visible = false
 mesh = SubResource( 2 )
 material/0 = null
 
@@ -52,10 +53,10 @@ material/0 = null
 transform = Transform( -1, 4.37114e-08, 4.37114e-08, -4.37114e-08, 4.37114e-08, -1, -4.37114e-08, -1, -4.37114e-08, 0, 0, 0 )
 polygon = PoolVector2Array( 0, 0, 3, -10, 2, -11.5, 1, -11.85, 0, -12, -1, -11.85, -2, -11.5, -3, -10 )
 depth = 0.997
-material = SubResource( 5 )
+material = SubResource( 3 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
-shape = SubResource( 6 )
+shape = SubResource( 4 )
 
 [node name="CPUParticles" type="CPUParticles" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.994524, -0.104511, 0, 0.104511, 0.994524, 0, 1.33546, 0.853646 )
@@ -66,7 +67,7 @@ one_shot = true
 speed_scale = 3.73
 explosiveness = 0.29
 lifetime_randomness = 0.52
-mesh = SubResource( 8 )
+mesh = SubResource( 6 )
 flag_align_y = true
 direction = Vector3( 0, 0.017, 1 )
 spread = 44.97
@@ -82,7 +83,7 @@ angle = 320.0
 angle_random = 0.22
 scale_amount = 0.0
 scale_amount_random = 0.5
-scale_amount_curve = SubResource( 9 )
+scale_amount_curve = SubResource( 7 )
 
 [node name="enemy" parent="." instance=ExtResource( 2 )]
 transform = Transform( 0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0.0308576, 0.34497, 0.0333462 )
