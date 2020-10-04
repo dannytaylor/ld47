@@ -13,6 +13,7 @@ enum EnemyKillState {
 var kill_state = EnemyKillState.IDLE
 
 onready var start_transform : Transform = transform
+onready var player = get_tree().get_nodes_in_group("player")[0]
 
 func _set_highlight(_highlight):
 	highlight = _highlight
@@ -23,8 +24,16 @@ func _set_highlight(_highlight):
 func _ready():
 	
 	#Listen for any players rewinding
-	var player = get_tree().get_nodes_in_group("player")[0]
 	get_parent().connect("rewind", self, "_on_GameController_rewind")
+	set_process(true)
+
+func _process(delta):
+	
+	#Update the radius shader
+	var shader = $MeshInstance.mesh.surface_get_material(0)
+	shader.set_shader_param("SourcePosition", player.global_transform.origin)
+	shader.set_shader_param("MaxDistance", player.view_distance)
+	
 	
 
 func rewind():

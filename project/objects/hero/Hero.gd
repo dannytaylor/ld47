@@ -11,6 +11,8 @@ var target_enemy : Enemy
 
 onready var start_position : Vector3 = transform.origin
 
+export(float, 50) var view_distance = 10
+
 class PlayerInputs:
 	
 	var up = false
@@ -97,6 +99,11 @@ func _ready():
 	set_process_unhandled_key_input(true)
 	set_physics_process(true)
 	get_parent().connect("rewind", self, "_on_GameController_rewind")
+	
+	set_process(true)
+
+func _process(delta):
+	pass
 
 func _physics_process(delta):
 	if player_controllable:
