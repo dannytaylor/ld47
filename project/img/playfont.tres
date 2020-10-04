@@ -3,6 +3,6 @@
 [ext_resource path="res://img/BebasNeue-Regular.ttf" type="DynamicFontData" id=1]
 
 [resource]
-size = 64
+size = 90
 use_mipmaps = true
 font_data = ExtResource( 1 )

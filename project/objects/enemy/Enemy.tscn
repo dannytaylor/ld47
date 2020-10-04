@@ -86,7 +86,7 @@ scale_amount_random = 0.5
 scale_amount_curve = SubResource( 7 )
 
 [node name="enemy" parent="." instance=ExtResource( 2 )]
-transform = Transform( 0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0.0308576, 0.34497, 0.0333462 )
+transform = Transform( 0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.0308576, 0.34497, 0.0333462 )
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
 
 [editable path="enemy"]
