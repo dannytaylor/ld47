@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://meshes/startsword.dae" type="PackedScene" id=1]
 [ext_resource path="res://img/playfont.tres" type="DynamicFont" id=2]
@@ -24,6 +24,9 @@ ssao_enabled = true
 size = 80
 use_mipmaps = true
 font_data = ExtResource( 4 )
+
+[sub_resource type="SpatialMaterial" id=12]
+flags_unshaded = true
 
 [sub_resource type="Shader" id=7]
 code = "// https://www.gdquest.com/tutorial/godot/shaders/flag-shader-3d/
@@ -158,9 +161,16 @@ align = 1
 [node name="startsword" parent="." instance=ExtResource( 1 )]
 transform = Transform( 0.899344, 0.437241, 0, -0.437241, 0.899344, 0, 0, 0, 1, -4.81768, -3.06997, 0.817822 )
 
+[node name="Cube" parent="startsword" index="0"]
+material/0 = SubResource( 12 )
+
 [node name="cloth" type="MeshInstance" parent="startsword"]
 transform = Transform( 0.912458, 0.203846, 0.354777, 0.408698, -0.412457, -0.814153, -0.0196314, 0.887877, -0.459661, 2.32921, 8.22246, 0.0683081 )
 mesh = SubResource( 11 )
 material/0 = null
+
+[node name="Timer" type="Timer" parent="."]
 [connection signal="mouse_entered" from="UI/play_button" to="." method="_on_play_button_mouse_entered"]
 [connection signal="pressed" from="UI/play_button" to="." method="_on_play_button_pressed"]
+
+[editable path="startsword"]

@@ -3,6 +3,7 @@ extends Spatial
 onready var play_button = $UI/play_button
 onready var play_shadow1 = $UI/play_button/play_shadow1
 onready var play_shadow2 = $UI/play_button/play_shadow2
+onready var black_material = preload("res://meshes/black.material")
 
 var text_speed = 40
 var text_offset = 240
@@ -29,4 +30,13 @@ func _on_play_button_mouse_entered():
 
 
 func _on_play_button_pressed():
+	$WorldEnvironment.environment.background_color = Color(1,1,1,1)
+	$UI/Label.hide()
+	$UI/play_button.hide()
+	
+	$startsword/Cube.material_override = black_material
+	
+	
+	$Timer.start()
+	yield($Timer, "timeout")
 	get_tree().change_scene("res://scenes/DevinTest.tscn")

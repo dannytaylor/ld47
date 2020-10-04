@@ -26,7 +26,7 @@ func _ready():
 	#Listen for any players rewinding
 	get_parent().connect("rewind", self, "_on_GameController_rewind")
 	set_process(true)
-
+	$enemy/AnimationPlayer.play("stand")
 func _process(delta):
 	
 	#Update the radius shader
@@ -41,7 +41,6 @@ func rewind():
 	#Stop animations
 	$Area.visible = true
 	$Area.monitoring = true
-	$AnimationPlayer.stop()
 	
 	#Reset position just in case
 	transform = start_transform
@@ -56,9 +55,9 @@ func kill():
 	kill_state = EnemyKillState.PREVIOUSLY_KILLED
 	
 	#Play death animation
+	$enemy/AnimationPlayer.play("death")
 	$CPUParticles.emitting = true
 	$CPUParticles.visible = true
-	$AnimationPlayer.play("spotted")
 
 func _on_GameController_rewind():
 	
@@ -72,5 +71,6 @@ func _on_Area_body_entered(body):
 	if body.is_in_group("player"):
 		#We got 'em
 		body.caught(self)
+		$enemy/AnimationPlayer.play("spotted")
 	
 	pass # Replace with function body.

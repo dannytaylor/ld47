@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://objects/hero/Hero.gd" type="Script" id=1]
 [ext_resource path="res://meshes/character.glb" type="PackedScene" id=2]
+[ext_resource path="res://meshes/char_run.anim" type="Animation" id=3]
+[ext_resource path="res://meshes/char_idle.anim" type="Animation" id=4]
+[ext_resource path="res://meshes/char_atk.anim" type="Animation" id=5]
 
 [sub_resource type="CapsuleMesh" id=1]
 
@@ -38,3 +41,61 @@ one_shot = true
 
 [node name="character" parent="." instance=ExtResource( 2 )]
 transform = Transform( -0.5, 0, -1.62921e-07, 0, 0.5, 0, 1.62921e-07, 0, -0.5, -0.0775528, 0.592878, 0.725112 )
+
+[node name="Bone" parent="character/Armature" index="0"]
+transform = Transform( 0.999939, 0.0110079, 0.00060686, -0.0110246, 0.998423, 0.0550424, -1.62981e-09, -0.0550457, 0.998484, -5.50465e-10, 0.113339, -0.346527 )
+
+[node name="Bone001" parent="character/Armature/Bone" index="0"]
+transform = Transform( 1, -9.16628e-10, 2.38433e-07, 3.15856e-08, 0.991689, -0.128659, -2.36333e-07, 0.128659, 0.991689, -6.94707e-10, 1.00152, 5.48995e-09 )
+
+[node name="Bone002" parent="character/Armature/Bone/Bone001" index="0"]
+transform = Transform( 0.999961, 0.00624454, -0.00626098, -0.00597227, 0.999074, 0.0426005, 0.0065212, -0.0425615, 0.999072, 2.70659e-10, 0.681591, 1.65462e-08 )
+
+[node name="Bone003" parent="character/Armature/Bone/Bone001/Bone002" index="0"]
+transform = Transform( 1, -1.31711e-07, 3.96836e-08, 1.31711e-07, 0.833555, -0.552437, 3.96836e-08, 0.552437, 0.833555, -2.96707e-14, 1.24998, -1.49012e-08 )
+
+[node name="Bone004" parent="character/Armature/Bone/Bone001/Bone002/Bone003" index="0"]
+transform = Transform( 1, 1.43971e-07, 4.8377e-08, -1.43971e-07, 0.797092, 0.603858, 4.8377e-08, -0.603858, 0.797092, -3.55743e-14, 0.469518, 2.47616e-08 )
+
+[node name="Bone005" parent="character/Armature/Bone/Bone001/Bone002" index="1"]
+transform = Transform( -0.965009, 0.261619, 0.0177303, -0.262194, -0.961767, -0.0791099, -0.00364425, -0.0809904, 0.996708, 0.748498, 0.933901, -0.149748 )
+
+[node name="Bone006" parent="character/Armature/Bone/Bone001/Bone002/Bone005" index="0"]
+transform = Transform( 0.996836, 0.0744282, -0.0279149, -0.079345, 0.952905, -0.292704, 0.00481478, 0.293993, 0.955795, -6.93609e-09, 1.0816, 2.09188e-08 )
+
+[node name="Bone007" parent="character/Armature/Bone/Bone001/Bone002/Bone005/Bone006" index="0"]
+transform = Transform( 0.969497, 0.233798, -0.0735765, -0.243541, 0.952721, -0.181685, 0.0276204, 0.194062, 0.9806, 6.83046e-08, 1.11026, -1.64025e-08 )
+
+[node name="Bone011" parent="character/Armature/Bone/Bone001/Bone002" index="2"]
+transform = Transform( -0.96488, -0.262133, 0.0172412, 0.261999, -0.96502, -0.00969413, 0.0191793, -0.0048365, 0.999804, -0.737157, 0.933901, -0.149749 )
+
+[node name="Bone012" parent="character/Armature/Bone/Bone001/Bone002/Bone011" index="0"]
+transform = Transform( 0.990551, -0.0771807, 0.113364, 0.10574, 0.956205, -0.272928, -0.0873347, 0.282337, 0.955332, -2.33995e-07, 1.0816, 1.02935e-07 )
+
+[node name="Bone013" parent="character/Armature/Bone/Bone001/Bone002/Bone011/Bone012" index="0"]
+transform = Transform( 0.99612, -0.0346592, -0.0808931, 0.0486441, 0.982846, 0.177898, 0.0733396, -0.181143, 0.980718, 1.0342e-07, 1.11026, -3.93958e-08 )
+
+[node name="Bone008" parent="character/Armature/Bone" index="1"]
+transform = Transform( -0.9914, 0.130699, -0.00646629, -0.130543, -0.991233, -0.0203914, -0.00907472, -0.0193719, 0.999771, 0.328885, -0.0555866, -0.021839 )
+
+[node name="Bone009" parent="character/Armature/Bone/Bone008" index="0"]
+transform = Transform( 0.99191, 0.126802, 0.00604264, -0.126787, 0.987177, 0.0969863, 0.00633286, -0.0969678, 0.995267, -9.45066e-10, 1.07337, -2.22548e-08 )
+
+[node name="Bone010" parent="character/Armature/Bone/Bone008/Bone009" index="0"]
+transform = Transform( 0.999172, 0.0119642, -0.0388765, -0.0405547, 0.219326, -0.974808, -0.00313623, 0.975578, 0.21963, -1.31742e-09, 1.99989, 1.46333e-08 )
+
+[node name="Bone014" parent="character/Armature/Bone" index="2"]
+transform = Transform( -0.991902, -0.126806, -0.00669184, 0.126728, -0.991876, 0.0110501, -0.00803867, 0.0101126, 0.999916, -0.317544, -0.0555866, -0.021839 )
+
+[node name="Bone015" parent="character/Armature/Bone/Bone014" index="0"]
+transform = Transform( 0.99191, -0.125554, -0.0187486, 0.126789, 0.987177, 0.0969852, 0.00633129, -0.0985777, 0.995109, -8.45627e-09, 1.07337, 2.47589e-08 )
+
+[node name="Bone016" parent="character/Armature/Bone/Bone014/Bone015" index="0"]
+transform = Transform( 0.99912, -0.01435, -0.0394014, -0.0344642, 0.254252, -0.966524, 0.0238875, 0.967032, 0.253533, 4.65452e-08, 1.99989, 2.60463e-08 )
+
+[node name="AnimationPlayer" parent="character" index="1"]
+anims/char_atk = ExtResource( 5 )
+anims/char_idle = ExtResource( 4 )
+anims/char_run = ExtResource( 3 )
+
+[editable path="character"]

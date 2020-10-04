@@ -23,6 +23,7 @@ func _process_movement(delta : float):
 	if not playback_paused:
 		var done = player_inputs.playback_state(playback_timestep)
 		playback_timestep += 1
+		
 		_apply_movement()
 		
 		#If we are done, stop time and kill our target
