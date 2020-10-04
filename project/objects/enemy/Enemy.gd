@@ -45,6 +45,8 @@ func rewind():
 	
 	#Reset position just in case
 	transform = start_transform
+	$CPUParticles.emitting = false
+	$CPUParticles.visible = false
 	
 
 func kill():
@@ -54,6 +56,8 @@ func kill():
 	kill_state = EnemyKillState.PREVIOUSLY_KILLED
 	
 	#Play death animation
+	$CPUParticles.emitting = true
+	$CPUParticles.visible = true
 	$AnimationPlayer.play("die")
 
 func _on_GameController_rewind():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://objects/enemy/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://objects/player/sight_radius_material.tres" type="Material" id=3]
@@ -11,7 +11,7 @@ material = ExtResource( 3 )
 [sub_resource type="Animation" id=3]
 resource_name = "die"
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:rotation_degrees")
+tracks/0/path = NodePath("MeshInstance:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -20,7 +20,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0, 0, 0 ), Vector3( 0, 0, 90 ) ]
+"values": [ Vector3( 90, -90, 0 ), Vector3( 0, -90, 0 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -47,15 +47,24 @@ albedo_color = Color( 1, 0.72549, 0, 0.294118 )
 [sub_resource type="ConvexPolygonShape" id=6]
 points = PoolVector3Array( 0, 0, 0, 3, 0, 10, 2, 0, 11.5, 1, 0, 11.85, 0, 0, 12, -1, 0, 11.85, -2, 0, 11.5, -3, 0, 10, 0, 1.352, 0 )
 
+[sub_resource type="SpatialMaterial" id=7]
+params_cull_mode = 2
+albedo_color = Color( 1, 0, 0, 1 )
+
+[sub_resource type="QuadMesh" id=8]
+material = SubResource( 7 )
+
+[sub_resource type="Curve" id=9]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0150877, 0, 0, Vector2( 0.813291, 0.678409 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -0.0885758, 0.0, 0, 0 ]
+
 [node name="Enemy" type="Spatial" groups=[
 "enemy",
 ]]
 pause_mode = 1
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.203217, 0 )
 script = ExtResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( -1.62921e-07, -1, 0, -1.62921e-07, 2.65431e-14, -1, 1, -1.62921e-07, -1.62921e-07, 0, 2, 0 )
+transform = Transform( -1.62921e-07, 0, -1, 0, 1, 0, 1, 0, -1.62921e-07, 0, 2, 0 )
 mesh = SubResource( 1 )
 material/0 = null
 
@@ -80,4 +89,31 @@ material = SubResource( 5 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Area"]
 shape = SubResource( 6 )
+
+[node name="CPUParticles" type="CPUParticles" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.994524, -0.104511, 0, 0.104511, 0.994524, 0, 1.33546, 0.853646 )
+emitting = false
+amount = 150
+lifetime = 20.0
+one_shot = true
+speed_scale = 3.73
+explosiveness = 0.29
+lifetime_randomness = 0.52
+mesh = SubResource( 8 )
+flag_align_y = true
+direction = Vector3( 0, 0.017, 1 )
+spread = 44.97
+flatness = 0.93
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 3.0
+initial_velocity_random = 0.31
+linear_accel = -0.33
+linear_accel_random = 0.15
+tangential_accel = 12.35
+damping = 0.1
+angle = 320.0
+angle_random = 0.22
+scale_amount = 0.0
+scale_amount_random = 0.5
+scale_amount_curve = SubResource( 9 )
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
