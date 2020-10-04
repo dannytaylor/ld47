@@ -27,6 +27,8 @@ func _ready():
 	get_parent().connect("rewind", self, "_on_GameController_rewind")
 	set_process(true)
 	$enemy/AnimationPlayer.play("stand")
+	
+	
 func _process(delta):
 	
 	#Update the radius shader

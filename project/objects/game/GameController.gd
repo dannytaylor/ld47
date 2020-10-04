@@ -11,6 +11,7 @@ const CompleteSlateScene = preload("res://scenes/mid-slates/CompleteSlate.tscn")
 const RestartSlateScene = preload("res://scenes/mid-slates/RestartSlate.tscn")
 
 var elapsed_time = 0
+var time_paused = true
 
 onready var player : Hero = get_tree().get_nodes_in_group("player")[0]
 
@@ -24,16 +25,19 @@ func _ready():
 	player.connect("rewind", self, "_on_player_rewind")
 	set_process_unhandled_key_input(true)
 	set_physics_process(true)
+	time_paused = false
 
 func _physics_process(delta):
-	elapsed_time += delta
-	emit_signal("time_updated", elapsed_time)
+	if not time_paused:
+		elapsed_time += delta
+		emit_signal("time_updated", elapsed_time)
 
 func _on_player_rewind(target):
 	
 	#All enemies killed?
+	time_paused = true
 	var remaining_enemies = update_remaining_enemies()
-	if remaining_enemies < 2:
+	if remaining_enemies < 1:
 		#We're done. Show end slate and then move to credits
 		yield(show_slate(CompleteSlateScene.instance()), "completed")
 		
@@ -60,7 +64,10 @@ func _on_player_rewind(target):
 		
 		#We rewind
 		emit_signal("rewind")
-		
+	
+	#Done with this, no longer pause
+	time_paused = false
+
 
 func show_slate(slate):
 	
