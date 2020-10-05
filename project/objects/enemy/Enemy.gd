@@ -33,9 +33,12 @@ func _process(delta):
 	
 	#Update the radius shader
 	var shader = $MeshInstance.mesh.surface_get_material(0)
-	shader.set_shader_param("SourcePosition", player.global_transform.origin)
-	shader.set_shader_param("MaxDistance", player.view_distance)
 	
+	if player:
+		shader.set_shader_param("SourcePosition", player.global_transform.origin)
+		shader.set_shader_param("MaxDistance", player.view_distance)
+	else:
+		shader.set_shader_param("MaxDistance", 10000)
 	
 
 func rewind():
@@ -45,9 +48,11 @@ func rewind():
 	$Area.monitoring = true
 	
 	#Reset position just in case
+	$enemy/AnimationPlayer.play("stand")
 	transform = start_transform
 	$CPUParticles.emitting = false
 	$CPUParticles.visible = false
+	$CPUParticles.restart()
 	
 
 func kill():

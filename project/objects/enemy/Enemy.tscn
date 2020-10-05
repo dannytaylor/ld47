@@ -88,9 +88,6 @@ scale_amount_curve = SubResource( 7 )
 
 [node name="enemy" parent="." instance=ExtResource( 2 )]
 transform = Transform( 0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.0308576, 0.34497, 0.0333462 )
-
-[node name="Cylinder" parent="enemy/Armature/Skeleton" index="0"]
-material/0 = ExtResource( 4 )
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
 
 [editable path="enemy"]

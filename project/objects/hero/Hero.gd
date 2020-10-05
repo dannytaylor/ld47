@@ -161,7 +161,7 @@ func _animate_slash():
 	$character/AnimationPlayer.play("char_atk")
 	
 	#Pause for dramatic effect
-	$Timer.start()
+	$Timer.start(0.5)
 	yield($Timer, "timeout")
 	
 	target_enemy.kill()

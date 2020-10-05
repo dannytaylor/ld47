@@ -12,8 +12,12 @@ const RestartSlateScene = preload("res://scenes/mid-slates/RestartSlate.tscn")
 
 var elapsed_time = 0
 var time_paused = true
+var game_over = false
+
 
 onready var player : Hero = get_tree().get_nodes_in_group("player")[0]
+onready var timer : Timer = Timer.new()
+onready var end_camera : Camera = Camera.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,13 +30,34 @@ func _ready():
 	set_process_unhandled_key_input(true)
 	set_physics_process(true)
 	time_paused = false
-
+	
+	#Add a timer
+	add_child(timer)
+	timer.one_shot = true
+	
+	#Set up the end camera
+	add_child(end_camera)
+	end_camera.global_transform = end_camera.global_transform.rotated(Vector3.LEFT, PI/2)
+	end_camera.global_transform = end_camera.global_transform.rotated(Vector3.UP, PI)
+	end_camera.global_transform.origin = Vector3(0, 40, 0)
+	
 func _physics_process(delta):
-	if not time_paused:
+	if not time_paused and not game_over:
 		elapsed_time += delta
 		emit_signal("time_updated", elapsed_time)
 
 func _on_player_rewind(target):
+	
+	#Did we kill someone?
+	if target:
+		
+		#Add a phantom
+		var playback_data = player.player_inputs.record
+		var new_phantom = PhantomScene.instance()
+		add_child(new_phantom)
+		new_phantom.playback_data = playback_data
+		new_phantom.transform.origin = player.transform.origin
+		new_phantom.target_enemy = target
 	
 	#All enemies killed?
 	time_paused = true
@@ -42,23 +67,13 @@ func _on_player_rewind(target):
 		yield(show_slate(CompleteSlateScene.instance()), "completed")
 		
 		#Move to end of game
+		game_end()
 		
 	else:
-		#We need to spawn a new phantom if the player 'got the kill'
 		if target:
-			
-			#Add a kill slate
-			var playback_data = player.player_inputs.record
+			#There was a kill, show the mid slate
 			yield(show_slate(KillSlateScene.instance()), "completed")
-			
-			
-			var new_phantom = PhantomScene.instance()
-			add_child(new_phantom)
-			new_phantom.playback_data = playback_data
-			new_phantom.transform.origin = player.transform.origin
-			new_phantom.target_enemy = target
 		else:
-			
 			#Plain restart, got caught or something
 			yield(show_slate(RestartSlateScene.instance()), "completed")
 		
@@ -68,6 +83,45 @@ func _on_player_rewind(target):
 	#Done with this, no longer pause
 	time_paused = false
 
+func game_end():
+	
+	#Kill the player, its all ghosts now
+	player.queue_free()
+	end_camera.current = true
+	
+	#Hide the regular UI
+	$UI.visible = false
+	
+	#Show the end UI
+	$EndUI.visible = true
+	time_paused = true
+	game_over = true
+	
+	#Connect contract enders
+	for phantom in get_tree().get_nodes_in_group("phantom"):
+		phantom.connect("contract_complete", self, "_on_contract_complete")
+	
+	replay_everything()
+
+func _on_contract_complete():
+	
+	#Are they all complete?
+	for phantom in get_tree().get_nodes_in_group("phantom"):
+		
+		#Is it done?
+		if not phantom.playback_paused:
+			return
+	
+	#All complete, go again
+	#Wait a little longer for dramatic effect
+	timer.start(3)
+	yield(timer, "timeout")
+	
+	#And go again
+	replay_everything()
+
+func replay_everything():
+	emit_signal("rewind")
 
 func show_slate(slate):
 	

@@ -18,7 +18,10 @@ func _ready():
 func _process(delta):
 	
 	#Move to the expected offset
-	#TODO: Make it 'lerp' there instead
+	if target == null:
+		queue_free()
+		return
+	
 	var target_origin = target.global_transform.origin - target_offset
 	var target_distance = global_transform.origin - target_origin
 	global_transform.origin -= target_distance * track_speed * delta
