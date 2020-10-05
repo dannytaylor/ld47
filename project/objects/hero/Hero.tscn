@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://objects/hero/Hero.gd" type="Script" id=1]
 [ext_resource path="res://meshes/character.glb" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://meshes/char_atk.anim" type="Animation" id=5]
 [ext_resource path="res://meshes/black_outline.material" type="Material" id=6]
 [ext_resource path="res://objects/hero/whistle_med_R_to_L_001.wav" type="AudioStream" id=7]
+[ext_resource path="res://meshes/white.material" type="Material" id=8]
 
 [sub_resource type="CapsuleMesh" id=1]
 
@@ -44,7 +45,7 @@ wait_time = 0.5
 one_shot = true
 
 [node name="character" parent="." instance=ExtResource( 2 )]
-transform = Transform( -0.5, 0, -1.62921e-07, 0, 0.5, 0, 1.62921e-07, 0, -0.5, -0.0775528, 0.0239734, 0.725112 )
+transform = Transform( -0.55, 0, -2.14178e-07, 0, 0.55, 0, 2.14178e-07, 0, -0.55, -0.0775528, 0.0239734, 0.725112 )
 
 [node name="Bone" parent="character/Armature" index="0"]
 transform = Transform( 1, 0, 0, 0, 0.998484, 0.0550457, 0, -0.0550457, 0.998484, 0, 0, -0.346527 )
@@ -101,7 +102,7 @@ transform = Transform( 0.969013, -0.244414, -0.0357193, 0.243374, 0.969433, -0.0
 material/0 = ExtResource( 6 )
 
 [node name="Sword" parent="character/Armature/Bone/Bone001/Bone002/Bone011/Bone012/Bone013" index="1"]
-material/0 = ExtResource( 6 )
+material/0 = ExtResource( 8 )
 
 [node name="Arm R" parent="character/Armature/Bone/Bone001/Bone002/Bone011/Bone012" index="1"]
 material/0 = ExtResource( 6 )
@@ -168,6 +169,6 @@ anims/char_run = ExtResource( 3 )
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
 stream = ExtResource( 7 )
-volume_db = -7.0
+volume_db = -9.0
 
 [editable path="character"]

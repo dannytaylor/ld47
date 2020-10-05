@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/cinameng_sparren.ogg-4afe2cfdaef8d6869a73cd3e886bf180.oggstr"
+
+[deps]
+
+source_file="res://sfx/cinameng_sparren.ogg"
+dest_files=[ "res://.import/cinameng_sparren.ogg-4afe2cfdaef8d6869a73cd3e886bf180.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

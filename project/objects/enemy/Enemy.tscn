@@ -24,14 +24,14 @@ material = ExtResource( 8 )
 [sub_resource type="SpatialMaterial" id=5]
 flags_transparent = true
 flags_unshaded = true
-albedo_color = Color( 0.921569, 0.921569, 0.921569, 0.294118 )
+albedo_color = Color( 0.921569, 0.921569, 0.921569, 0.152941 )
 
 [sub_resource type="ConvexPolygonShape" id=6]
 points = PoolVector3Array( 0, 0, 0, 3, 0, 10, 2, 0, 11.5, 1, 0, 11.85, 0, 0, 12, -1, 0, 11.85, -2, 0, 11.5, -3, 0, 10, 0, 1.352, 0 )
 
 [sub_resource type="SpatialMaterial" id=7]
 params_cull_mode = 2
-albedo_color = Color( 1, 0, 0, 1 )
+albedo_color = Color( 0.92549, 0.141176, 0.345098, 1 )
 
 [sub_resource type="QuadMesh" id=8]
 material = SubResource( 7 )
@@ -72,6 +72,7 @@ material/0 = null
 [node name="Area" type="Area" parent="." groups=[
 "spotlight",
 ]]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.43102 )
 
 [node name="Spatial" type="CSGPolygon" parent="Area"]
 transform = Transform( -1, 4.37114e-08, 4.37114e-08, -4.37114e-08, 4.37114e-08, -1, -4.37114e-08, -1, -4.37114e-08, 0, 0.616244, 0.64743 )
@@ -83,7 +84,7 @@ material = SubResource( 5 )
 shape = SubResource( 6 )
 
 [node name="CPUParticles" type="CPUParticles" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.994524, -0.104511, 0, 0.104511, 0.994524, 0, 1.33546, 0.853646 )
+transform = Transform( 1, 0, 0, 0, 0.994524, -0.104511, 0, 0.104511, 0.994524, 0, 1.33546, 1.47993 )
 emitting = false
 amount = 150
 lifetime = 20.0
@@ -132,6 +133,7 @@ texture = ExtResource( 5 )
 stream = ExtResource( 6 )
 attenuation_model = 3
 unit_db = 10.828
+max_db = -8.0
 pitch_scale = 0.47
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
 

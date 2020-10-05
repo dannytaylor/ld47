@@ -1,8 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://img/playfont.tres" type="DynamicFont" id=1]
 
-[sub_resource type="GDScript" id=1]
+[sub_resource type="StyleBoxFlat" id=3]
+
+[sub_resource type="GDScript" id=2]
 script/source = "extends Button
 
 
@@ -36,9 +38,14 @@ __meta__ = {
 [node name="Label" type="Label" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
+margin_left = 1018.02
+margin_top = -680.335
+margin_right = 1242.02
+margin_bottom = -572.335
 grow_vertical = 0
 custom_fonts/font = ExtResource( 1 )
-text = "SCORE: 00:00"
+text = "0:00"
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -48,10 +55,18 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = -250.996
+margin_top = -563.656
+margin_right = -27.9956
+margin_bottom = -449.656
 grow_horizontal = 0
 grow_vertical = 0
+custom_styles/disabled = SubResource( 3 )
 custom_fonts/font = ExtResource( 1 )
-text = "PLAY AGAIN"
+text = "rewind"
 flat = true
-script = SubResource( 1 )
+script = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="Button" to="Button" method="_on_Button_pressed"]

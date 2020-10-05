@@ -6,6 +6,7 @@ onready var play_button = $UI/play_button
 onready var play_shadow1 = $UI/play_button/play_shadow1
 onready var play_shadow2 = $UI/play_button/play_shadow2
 onready var black_material = preload("res://meshes/Black.material")
+onready var block = get_node("BlockSound")
 
 var text_speed = 40
 var text_offset = 160
@@ -37,7 +38,7 @@ func _on_play_button_pressed():
 	$UI/play_button.hide()
 	
 	$startsword/Cube.material_override = black_material
-	
+	block.play()
 	
 	$Timer.start()
 	yield($Timer, "timeout")

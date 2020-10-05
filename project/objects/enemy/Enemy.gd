@@ -5,6 +5,7 @@ const enemy_material = preload("res://objects/enemy/enemy_material.tres")
 const highlight_material = preload("res://objects/enemy/outline_material.tres")
 
 var highlight : bool = false setget _set_highlight
+var fadekilled = false
 
 enum EnemyKillState {
 	IDLE,
@@ -31,22 +32,17 @@ func _ready():
 	
 func _process(delta):
 	
+	if fadekilled:
+		$Killed.opacity -= 0.01 
 	#Update the radius shader
-	var shader_black = $mesh_black.mesh.surface_get_material(0)
-	var shader_white = $mesh_white.mesh.surface_get_material(0)
-	var shader_red   = $mesh_red.mesh.surface_get_material(0)
+	#var shader_black = $mesh_black.mesh.surface_get_material(0)
 	
-	if player:
-		shader_black.set_shader_param("SourcePosition", player.global_transform.origin)
-		shader_white.set_shader_param("SourcePosition", player.global_transform.origin)
-		shader_red.set_shader_param(  "SourcePosition", player.global_transform.origin)
-		shader_black.set_shader_param("MaxDistance", player.view_distance)
-		shader_white.set_shader_param("MaxDistance", player.view_distance)
-		shader_red.set_shader_param(  "MaxDistance", player.view_distance)
-	else:
-		shader_black.set_shader_param("MaxDistance", 10000)
-		shader_white.set_shader_param("MaxDistance", 10000)
-		shader_red.set_shader_param(  "MaxDistance", 10000)
+	
+	
+	#if player:
+		#shader_black.set_shader_param("SourcePosition", player.global_transform.origin)
+	#else:
+		#shader_black.set_shader_param("MaxDistance", 10000)
 		
 	
 
@@ -67,6 +63,8 @@ func rewind():
 	$CPUParticles.restart()
 	
 	$Killed.visible = kill_state == EnemyKillState.PREVIOUSLY_KILLED
+	$Killed.opacity = 1.0
+	fadekilled = false
 	
 
 func kill():
@@ -80,6 +78,7 @@ func kill():
 	$enemy/AnimationPlayer.play("death")
 	$CPUParticles.emitting = true
 	$CPUParticles.visible = true
+	fadekilled = true
 
 func _on_GameController_rewind():
 	

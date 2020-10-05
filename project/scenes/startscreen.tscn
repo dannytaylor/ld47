@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://meshes/startsword.dae" type="PackedScene" id=1]
 [ext_resource path="res://img/playfont.tres" type="DynamicFont" id=2]
 [ext_resource path="res://scenes/startscreen.gd" type="Script" id=3]
 [ext_resource path="res://img/BebasNeue-Regular.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://scenes/mid-slates/woodblock.ogg" type="AudioStream" id=5]
 
 [sub_resource type="Environment" id=1]
 background_mode = 1
@@ -20,8 +21,8 @@ ssao_enabled = true
 
 [sub_resource type="StyleBoxEmpty" id=5]
 
-[sub_resource type="DynamicFont" id=6]
-size = 80
+[sub_resource type="DynamicFont" id=13]
+size = 160
 use_mipmaps = true
 font_data = ExtResource( 4 )
 
@@ -107,17 +108,17 @@ __meta__ = {
 }
 
 [node name="play_button" type="Button" parent="UI"]
-margin_left = -63.0
-margin_top = 196.0
-margin_right = 74.0
-margin_bottom = 304.0
+margin_left = -67.0045
+margin_top = 165.046
+margin_right = 69.9955
+margin_bottom = 273.046
 custom_styles/hover = SubResource( 2 )
 custom_styles/pressed = SubResource( 3 )
 custom_styles/focus = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
 custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
-custom_colors/font_color_hover = Color( 0.847059, 0.941176, 1, 0.584314 )
+custom_colors/font_color = Color( 0.176471, 0.176471, 0.176471, 1 )
+custom_colors/font_color_hover = Color( 0.847059, 0.941176, 1, 1 )
 custom_colors/font_color_pressed = Color( 1, 1, 1, 0.607843 )
 text = "PLAY"
 __meta__ = {
@@ -130,7 +131,7 @@ anchor_right = 1.0
 margin_right = 170.0
 margin_bottom = 64.0
 custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.305882, 0.772549, 1, 0.647059 )
+custom_colors/font_color = Color( 0.305882, 0.772549, 1, 0.215686 )
 text = "PLAY"
 __meta__ = {
 "_edit_lock_": true,
@@ -141,7 +142,7 @@ __meta__ = {
 show_behind_parent = true
 anchor_right = 1.0
 custom_fonts/font = ExtResource( 2 )
-custom_colors/font_color = Color( 0.305882, 0.772549, 1, 0.309804 )
+custom_colors/font_color = Color( 0.305882, 0.772549, 1, 0.215686 )
 text = "PLAY"
 __meta__ = {
 "_edit_lock_": true,
@@ -149,21 +150,21 @@ __meta__ = {
 }
 
 [node name="Title" type="Label" parent="UI"]
-visible = false
-margin_left = -319.0
-margin_top = -216.0
-margin_right = 318.0
-margin_bottom = -120.0
-custom_fonts/font = SubResource( 6 )
-custom_colors/font_color = Color( 0.745098, 0.745098, 0.745098, 1 )
-text = "TITLE (RONIN?)"
+margin_left = -143.698
+margin_top = -310.393
+margin_right = 151.302
+margin_bottom = -118.393
+rect_scale = Vector2( 1, 1.6 )
+custom_fonts/font = SubResource( 13 )
+custom_colors/font_color = Color( 0.164706, 0.164706, 0.164706, 1 )
+text = "RONIN"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="startsword" parent="." instance=ExtResource( 1 )]
-transform = Transform( 0.899344, 0.437241, 0, -0.437241, 0.899344, 0, 0, 0, 1, -4.81768, -3.06997, 0.817822 )
+transform = Transform( 0.899344, 0.437241, 0, -0.437241, 0.899344, 0, 0, 0, 1, -4.97155, -3.27417, 0.817822 )
 
 [node name="Cube" parent="startsword" index="0"]
 material/0 = SubResource( 7 )
@@ -174,7 +175,12 @@ mesh = SubResource( 12 )
 material/0 = null
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 1.4
+
+[node name="BlockSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = 1.0
+pitch_scale = 1.39
 [connection signal="mouse_entered" from="UI/play_button" to="." method="_on_play_button_mouse_entered"]
 [connection signal="pressed" from="UI/play_button" to="." method="_on_play_button_pressed"]
 
