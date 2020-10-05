@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/177284__gauraa__clippityclapwood-freesoundorg_01.ogg-97d6214b6325c3b8ba3c4cce88e508a4.oggstr"
+
+[deps]
+
+source_file="res://sfx/177284__gauraa__clippityclapwood-freesoundorg_01.ogg"
+dest_files=[ "res://.import/177284__gauraa__clippityclapwood-freesoundorg_01.ogg-97d6214b6325c3b8ba3c4cce88e508a4.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

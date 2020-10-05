@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/27858__erdie__sword04_01-freesound.ogg-b910d1c4335ce1fbccb7e17a5493065e.oggstr"
+
+[deps]
+
+source_file="res://sfx/27858__erdie__sword04_01-freesound.ogg"
+dest_files=[ "res://.import/27858__erdie__sword04_01-freesound.ogg-b910d1c4335ce1fbccb7e17a5493065e.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

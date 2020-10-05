@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/30244__streety__sword1_01-freesound.ogg-758e7cae110cc2dcc98ddfd49022c50b.oggstr"
+
+[deps]
+
+source_file="res://sfx/30244__streety__sword1_01-freesound.ogg"
+dest_files=[ "res://.import/30244__streety__sword1_01-freesound.ogg-758e7cae110cc2dcc98ddfd49022c50b.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
