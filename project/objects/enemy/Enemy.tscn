@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://objects/enemy/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://meshes/enemy.gltf" type="PackedScene" id=2]
 [ext_resource path="res://objects/player/sight_radius_material.tres" type="Material" id=3]
-[ext_resource path="res://meshes/black_outline.material" type="Material" id=4]
+[ext_resource path="res://meshes/black_enemy.material" type="Material" id=4]
+[ext_resource path="res://objects/enemy/enemy_material.tres" type="Material" id=5]
 
 [sub_resource type="CapsuleMesh" id=1]
 material = ExtResource( 3 )
@@ -88,6 +89,11 @@ scale_amount_curve = SubResource( 7 )
 
 [node name="enemy" parent="." instance=ExtResource( 2 )]
 transform = Transform( 0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.0308576, 0.34497, 0.0333462 )
+
+[node name="Cylinder" parent="enemy/Armature/Skeleton" index="0"]
+material/0 = ExtResource( 4 )
+material/1 = ExtResource( 5 )
+material/2 = ExtResource( 3 )
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
 
 [editable path="enemy"]
