@@ -25,6 +25,10 @@ func _process(delta):
 	var target_origin = target.global_transform.origin - target_offset
 	var target_distance = global_transform.origin - target_origin
 	global_transform.origin -= target_distance * track_speed * delta
-	
+
 	#Face towards the player
 	look_at(target.global_transform.origin, Vector3.UP)
+
+
+func _on_Game_rewind():
+	global_transform.origin = target.global_transform.origin - target_offset
