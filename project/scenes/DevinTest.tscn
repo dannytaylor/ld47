@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://objects/environment/Ground.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/hero/Hero.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://objects/enemy/Enemy.tscn" type="PackedScene" id=5]
 [ext_resource path="res://objects/game/GameController.gd" type="Script" id=6]
 [ext_resource path="res://objects/game/UI.tscn" type="PackedScene" id=7]
+[ext_resource path="res://img/playfont.tres" type="DynamicFont" id=8]
 
 [node name="DevinTest" type="Spatial" groups=[
 "gamecontroller",
@@ -32,3 +33,32 @@ transform = Transform( -1, 2.95312e-07, -1.37706e-07, 0, 0.422618, 0.906308, 3.2
 current = true
 
 [node name="UI" parent="." instance=ExtResource( 7 )]
+
+[node name="EndUI" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="EndUI"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+grow_vertical = 0
+custom_fonts/font = ExtResource( 8 )
+text = "SCORE: 00:00"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="EndUI"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+custom_fonts/font = ExtResource( 8 )
+text = "PLAY AGAIN"
+flat = true

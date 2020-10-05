@@ -1,5 +1,7 @@
 extends Hero
 
+signal contract_complete
+
 var playback_data : Array = [] setget _set_playback_data
 var playback_timestep : int = 0
 var playback_paused : bool = true
@@ -10,8 +12,8 @@ func _ready():
 	start_playback()
 	
 	#Listen for any players rewinding
-	var player = get_tree().get_nodes_in_group("player")[0]
-	player.connect("rewind", self, "_on_player_rewind")
+	var game = get_tree().get_nodes_in_group("gamecontroller")[0]
+	game.connect("rewind", self, "_on_player_rewind")
 
 func _set_playback_data(_playback_data):
 	playback_data = _playback_data
@@ -30,6 +32,7 @@ func _process_movement(delta : float):
 		if done:
 			playback_paused = true
 			_animate_slash()
+			emit_signal("contract_complete")
 
 func _animate_slash():
 	
@@ -38,6 +41,11 @@ func _animate_slash():
 	look_at(target_enemy.global_transform.origin, Vector3.UP)
 	
 	$character/AnimationPlayer.play("char_atk")
+	
+	#Pause for dramatic effect
+	$Timer.start(0.5)
+	yield($Timer, "timeout")
+	
 	target_enemy.kill()
 
 func _check_enemy():
@@ -63,7 +71,7 @@ func rewind(successful=true):
 	#Start the playback again
 	start_playback()
 
-func _on_player_rewind(successful):
+func _on_player_rewind():
 	
 	#Kick off the rewind sequence
 	rewind()
