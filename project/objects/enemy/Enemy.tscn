@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://objects/enemy/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://meshes/enemy.gltf" type="PackedScene" id=2]
 [ext_resource path="res://meshes/black_outline.material" type="Material" id=3]
 [ext_resource path="res://objects/enemy/alert.png" type="Texture" id=4]
 [ext_resource path="res://objects/enemy/condemned.png" type="Texture" id=5]
+[ext_resource path="res://sfx/516189__aarrnnoo__splash-and-squishy-gross-sound_01-freesound.ogg" type="AudioStream" id=6]
 [ext_resource path="res://meshes/materials/sight_radius_white.tres" type="Material" id=7]
 [ext_resource path="res://meshes/materials/sight_radius_red.tres" type="Material" id=8]
 [ext_resource path="res://meshes/materials/sight_radius_black.tres" type="Material" id=9]
@@ -126,6 +127,12 @@ transform = Transform( 3, 0, 0, 0, -1.31134e-07, 3, 0, -3, -1.31134e-07, 0, 0.1,
 visible = false
 modulate = Color( 0.894118, 0.25098, 0.341176, 1 )
 texture = ExtResource( 5 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 6 )
+attenuation_model = 3
+unit_db = 10.828
+pitch_scale = 0.47
 [connection signal="body_entered" from="Area" to="." method="_on_Area_body_entered"]
 
 [editable path="enemy"]

@@ -2,7 +2,7 @@ extends KinematicBody
 class_name Hero
 
 const CaughtSFX = preload("res://objects/hero/whistle_med_R_to_L_001.wav")
-
+const SlashSFX = preload("res://sfx/27858__erdie__sword04_01-freesound.ogg")
 signal rewind(target)
 
 var facing : Vector3 = Vector3.FORWARD
@@ -161,6 +161,8 @@ func _animate_slash():
 	look_at(target_enemy.global_transform.origin, Vector3.UP)
 	
 	$character/AnimationPlayer.play("char_atk")
+	$AudioStreamPlayer.stream = SlashSFX
+	$AudioStreamPlayer.play()
 	
 	#Pause for dramatic effect
 	$Timer.start(0.5)

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/463854__drowsyprincess__snd-footsteps-grass-freesound_01.ogg-9813a023bd358f5ffe235e20ca22b227.oggstr"
+
+[deps]
+
+source_file="res://sfx/463854__drowsyprincess__snd-footsteps-grass-freesound_01.ogg"
+dest_files=[ "res://.import/463854__drowsyprincess__snd-footsteps-grass-freesound_01.ogg-9813a023bd358f5ffe235e20ca22b227.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

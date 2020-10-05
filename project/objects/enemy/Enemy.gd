@@ -58,6 +58,7 @@ func rewind():
 	$Area.monitoring = true
 	
 	#Reset position just in case
+	$AudioStreamPlayer.stop()
 	$enemy/AnimationPlayer.play("stand")
 	$enemy/AnimationPlayer.play("default")
 	transform = start_transform
@@ -75,6 +76,7 @@ func kill():
 	kill_state = EnemyKillState.PREVIOUSLY_KILLED
 	
 	#Play death animation
+	$AudioStreamPlayer.play()
 	$enemy/AnimationPlayer.play("death")
 	$CPUParticles.emitting = true
 	$CPUParticles.visible = true

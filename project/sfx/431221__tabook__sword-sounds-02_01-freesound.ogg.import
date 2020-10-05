@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/431221__tabook__sword-sounds-02_01-freesound.ogg-6e4cd60ff286d9bb3af2d86b280c97f5.oggstr"
+
+[deps]
+
+source_file="res://sfx/431221__tabook__sword-sounds-02_01-freesound.ogg"
+dest_files=[ "res://.import/431221__tabook__sword-sounds-02_01-freesound.ogg-6e4cd60ff286d9bb3af2d86b280c97f5.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
