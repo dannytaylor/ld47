@@ -24,7 +24,7 @@ func _set_highlight(_highlight):
 func _ready():
 	
 	#Listen for any players rewinding
-	get_parent().connect("rewind", self, "_on_GameController_rewind")
+	get_tree().get_nodes_in_group("gamecontroller")[0].connect("rewind", self, "_on_GameController_rewind")
 	set_process(true)
 	$enemy/AnimationPlayer.play("stand")
 	
@@ -49,6 +49,7 @@ func rewind():
 	
 	#Reset position just in case
 	$enemy/AnimationPlayer.play("stand")
+	$enemy/AnimationPlayer.play("default")
 	transform = start_transform
 	$CPUParticles.emitting = false
 	$CPUParticles.visible = false

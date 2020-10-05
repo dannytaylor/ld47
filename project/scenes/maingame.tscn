@@ -1,10 +1,24 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://objects/game/UI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/game/GameController.gd" type="Script" id=2]
 [ext_resource path="res://objects/environment/Ground.tscn" type="PackedScene" id=3]
 [ext_resource path="res://objects/hero/Hero.tscn" type="PackedScene" id=4]
 [ext_resource path="res://objects/player/PlayerCamera.tscn" type="PackedScene" id=5]
+[ext_resource path="res://objects/enemy/Enemy.tscn" type="PackedScene" id=6]
+[ext_resource path="res://objects/buildings/Building.tscn" type="PackedScene" id=7]
+[ext_resource path="res://objects/buildings/Tree.tscn" type="PackedScene" id=8]
+[ext_resource path="res://objects/buildings/Fence.glb" type="PackedScene" id=9]
+[ext_resource path="res://objects/buildings/Fence-Tall.tscn" type="PackedScene" id=10]
+[ext_resource path="res://objects/game/EndUI.tscn" type="PackedScene" id=11]
+[ext_resource path="res://objects/buildings/Fence.tscn" type="PackedScene" id=12]
+[ext_resource path="res://objects/buildings/Tree.glb" type="PackedScene" id=13]
+
+[sub_resource type="BoxShape" id=1]
+extents = Vector3( 0.282239, 1, 13.6215 )
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 1, 1, 7.0377 )
 
 [node name="Game" type="Spatial" groups=[
 "gamecontroller",
@@ -14,9 +28,289 @@ script = ExtResource( 2 )
 [node name="City" type="Spatial" parent="."]
 
 [node name="Ground" parent="City" instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0297146, 0.0136204, 0.0038805 )
+
+[node name="Spatial6" type="Spatial" parent="City"]
+
+[node name="Tree" parent="City/Spatial6" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.627026, 0, 20.0646 )
+
+[node name="Tree2" parent="City/Spatial6" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.23073, 0, 17.194 )
+
+[node name="Tree3" parent="City/Spatial6" instance=ExtResource( 13 )]
+transform = Transform( 0.607625, 0, 0.794224, 0, 1, 0, -0.794224, 0, 0.607625, -6.4897, 0, 13.1547 )
+
+[node name="Tree4" parent="City/Spatial6" instance=ExtResource( 13 )]
+transform = Transform( 0.863123, 0, 0.793154, 0, 1.17221, 0, -0.793154, 0, 0.863123, -7.63111, 0, 10.6608 )
+
+[node name="Tree5" parent="City/Spatial6" instance=ExtResource( 13 )]
+transform = Transform( 0.256068, 0, -0.849693, 0, 0.88744, 0, 0.849693, 0, 0.256068, -12.4889, 0, 7.79017 )
+
+[node name="Tree6" parent="City/Spatial6" instance=ExtResource( 13 )]
+transform = Transform( 0.950069, 0, 0.248874, 0, 0.982125, 0, -0.248874, 0, 0.950069, -14.7478, 0, 3.75085 )
+
+[node name="StaticBody" type="StaticBody" parent="City/Spatial6"]
+collision_mask = 3
+
+[node name="CollisionShape" type="CollisionShape" parent="City/Spatial6/StaticBody"]
+transform = Transform( 0.690403, 0, 0.723425, 0, 1, 0, -0.723425, 0, 0.690403, -5.59637, 0.996859, 10.1221 )
+shape = SubResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="StaticBody2" type="StaticBody" parent="City/Spatial6"]
+collision_mask = 3
+
+[node name="CollisionShape" type="CollisionShape" parent="City/Spatial6/StaticBody2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.9157, 1, -2.3615 )
+shape = SubResource( 2 )
+
+[node name="StaticBody3" type="StaticBody" parent="City/Spatial6"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -11.5049, -9.53674e-07, -23.0519 )
+collision_mask = 3
+
+[node name="CollisionShape" type="CollisionShape" parent="City/Spatial6/StaticBody3"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.9157, 1, -2.3615 )
+shape = SubResource( 2 )
+
+[node name="Fence2" parent="City/Spatial6" instance=ExtResource( 9 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13.3961, 0, -7.20081 )
+
+[node name="Fence3" parent="City/Spatial6" instance=ExtResource( 9 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13.3961, 0, -4.91251 )
+
+[node name="Fence4" parent="City/Spatial6" instance=ExtResource( 9 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13.3961, 0, -2.62019 )
+
+[node name="Fence5" parent="City/Spatial6" instance=ExtResource( 9 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13.3961, 0, -0.331897 )
+
+[node name="Spatial3" type="Spatial" parent="City"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0 )
+
+[node name="Tree" parent="City/Spatial3" instance=ExtResource( 8 )]
+transform = Transform( 1.25, 0, 0, 0, 2, 0, 0, 0, 1.25, -9.44142, 0, 0 )
+
+[node name="Building" parent="City/Spatial3" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.7872, 0, 5.49337 )
+
+[node name="Building2" parent="City/Spatial3" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 21.9862, 0, -6.86276 )
+
+[node name="Fence" parent="City/Spatial3" instance=ExtResource( 9 )]
+transform = Transform( -0.339657, 0, 0.940549, 0, 1, 0, -0.940549, 0, -0.339657, 16.268, 0, -1.56941 )
+
+[node name="Spatial" type="Spatial" parent="City"]
+
+[node name="Fence-Tall" parent="City/Spatial" instance=ExtResource( 10 )]
+transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 2.93494, 0, 7.6035 )
+
+[node name="Fence-Tall2" parent="City/Spatial" instance=ExtResource( 10 )]
+transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 4.93494, 0, 8.77416 )
+
+[node name="Fence-Tall3" parent="City/Spatial" instance=ExtResource( 10 )]
+transform = Transform( 0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 3.33838, 0, 10.4415 )
+
+[node name="Fence-Tall4" parent="City/Spatial" instance=ExtResource( 10 )]
+transform = Transform( -0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 5.33838, 0, 11.6121 )
+
+[node name="Tree" parent="City/Spatial" instance=ExtResource( 8 )]
+transform = Transform( 1.25, 0, 0, 0, 2, 0, 0, 0, 1.25, 23.3011, 0, 14.8947 )
+
+[node name="Spatial2" type="Spatial" parent="City"]
+
+[node name="Building" parent="City/Spatial2" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 7.09508, 0, 21.1364 )
+
+[node name="Building2" parent="City/Spatial2" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 19.0951, 0, 21.1364 )
+
+[node name="Spatial4" type="Spatial" parent="City"]
+
+[node name="Building" parent="City/Spatial4" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, -12 )
+
+[node name="Fence" parent="City/Spatial4" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.56158, 0, -9.45213 )
+
+[node name="Fence2" parent="City/Spatial4" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9271, 0, -9.45213 )
+
+[node name="Fence3" parent="City/Spatial4" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -13.2569, 0, -9.45213 )
+
+[node name="Fence4" parent="City/Spatial4" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -15.6224, 0, -9.45213 )
+
+[node name="Fence5" parent="City/Spatial4" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.9832, 0, -9.45213 )
+
+[node name="Fence6" parent="City/Spatial4" instance=ExtResource( 9 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -20.3487, 0, -9.45213 )
+
+[node name="Building2" parent="City/Spatial4" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -23.4304, 0, -12.2544 )
+
+[node name="Building3" parent="City/Spatial4" instance=ExtResource( 7 )]
+transform = Transform( 0.835884, 0, 0.548906, 0, 1, 0, -0.548906, 0, 0.835884, -25.7481, 0, -25.1861 )
+
+[node name="Tree" parent="City/Spatial4" instance=ExtResource( 8 )]
+transform = Transform( 1.25, 0, 0, 0, 2, 0, 0, 0, 1.25, -21.5884, 2.38419e-07, -21.0159 )
+
+[node name="Fence-Tall" parent="City/Spatial4" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -26.4222, 0, -31.3523 )
+
+[node name="Fence-Tall2" parent="City/Spatial4" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -24.0674, 0, -31.3523 )
+
+[node name="Fence-Tall3" parent="City/Spatial4" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -21.7462, 0, -31.3523 )
+
+[node name="Fence-Tall4" parent="City/Spatial4" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -19.3914, 0, -31.3523 )
+
+[node name="Fence-Tall5" parent="City/Spatial4" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -17.003, 0, -31.3523 )
+
+[node name="Fence-Tall6" parent="City/Spatial4" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6482, 0, -31.3523 )
+
+[node name="Fence-Tall7" parent="City/Spatial4" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.327, 0, -31.3523 )
+
+[node name="Fence-Tall8" parent="City/Spatial4" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -9.97216, 0, -31.3523 )
+
+[node name="Fence-Tall9" parent="City/Spatial4" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -7.57959, 0, -31.3523 )
+
+[node name="Fence-Tall10" parent="City/Spatial4" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.22477, 0, -31.3523 )
+
+[node name="Fence-Tall11" parent="City/Spatial4" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2.90357, 0, -31.3523 )
+
+[node name="Fence-Tall12" parent="City/Spatial4" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.548761, 0, -31.3523 )
+
+[node name="Fence-Tall13" parent="City/Spatial4" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.83965, 0, -31.3523 )
+
+[node name="Fence-Tall14" parent="City/Spatial4" instance=ExtResource( 10 )]
+transform = Transform( 0.926062, 0, -0.377372, 0, 1, 0, 0.377372, 0, 0.926062, 8.80028, 0, -31.3584 )
+
+[node name="Fence-Tall15" parent="City/Spatial4" instance=ExtResource( 10 )]
+transform = Transform( 0.926062, 0, -0.377372, 0, 1, 0, 0.377372, 0, 0.926062, 10.981, 0, -30.4698 )
+
+[node name="Fence-Tall16" parent="City/Spatial4" instance=ExtResource( 10 )]
+transform = Transform( 0.926062, 0, -0.377372, 0, 1, 0, 0.377372, 0, 0.926062, 13.1306, 0, -29.5938 )
+
+[node name="Fence-Tall17" parent="City/Spatial4" instance=ExtResource( 10 )]
+transform = Transform( 0.926062, 0, -0.377372, 0, 1, 0, 0.377372, 0, 0.926062, 15.3113, 0, -28.7052 )
+
+[node name="Fence-Tall18" parent="City/Spatial4" instance=ExtResource( 10 )]
+transform = Transform( 0.926062, 0, -0.377372, 0, 1, 0, 0.377372, 0, 0.926062, 17.5231, 0, -27.8039 )
+
+[node name="Fence7" parent="City/Spatial4" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4.16488, 0, -31.3667 )
+
+[node name="Fence8" parent="City/Spatial4" instance=ExtResource( 12 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8.65497, 0, -31.3667 )
+
+[node name="Spatial5" type="Spatial" parent="City"]
+
+[node name="Fence" parent="City/Spatial5" instance=ExtResource( 12 )]
+transform = Transform( -0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 21.8007, 0, -3.26188 )
+
+[node name="Fence2" parent="City/Spatial5" instance=ExtResource( 12 )]
+transform = Transform( -0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, -0.866025, 23.8081, 4.76837e-07, -2.11936 )
+
+[node name="Fence3" parent="City/Spatial5" instance=ExtResource( 12 )]
+transform = Transform( 1.19209e-07, 0, 1, 0, 1, 0, -1, 0, 1.19209e-07, 23.8265, 0, 0.122932 )
+
+[node name="Fence4" parent="City/Spatial5" instance=ExtResource( 12 )]
+transform = Transform( 1.19209e-07, 0, 1, 0, 1, 0, -1, 0, 1.19209e-07, 23.8407, 4.76837e-07, 2.43258 )
+
+[node name="Fence5" parent="City/Spatial5" instance=ExtResource( 12 )]
+transform = Transform( 1.19209e-07, 0, 1, 0, 1, 0, -1, 0, 1.19209e-07, 23.8265, 0, 4.79947 )
+
+[node name="Fence6" parent="City/Spatial5" instance=ExtResource( 12 )]
+transform = Transform( 1.19209e-07, 0, 1, 0, 1, 0, -1, 0, 1.19209e-07, 23.8407, 4.76837e-07, 7.10912 )
+
+[node name="Fence7" parent="City/Spatial5" instance=ExtResource( 12 )]
+transform = Transform( 1.19209e-07, 0, 1, 0, 1, 0, -1, 0, 1.19209e-07, 23.8265, 0, 9.32478 )
+
+[node name="Fence8" parent="City/Spatial5" instance=ExtResource( 12 )]
+transform = Transform( 1.19209e-07, 0, 1, 0, 1, 0, -1, 0, 1.19209e-07, 23.8407, 4.76837e-07, 11.6344 )
+
+[node name="Fence-Tall" parent="City/Spatial5" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 23.8173, 0, 11.6495 )
+
+[node name="Fence-Tall2" parent="City/Spatial5" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 26.1014, 0, 11.6495 )
+
+[node name="Fence-Tall3" parent="City/Spatial5" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28.3197, 0, 11.6495 )
+
+[node name="Fence-Tall4" parent="City/Spatial5" instance=ExtResource( 10 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 32.7834, 0, 11.6495 )
+
+[node name="Building" parent="City/Spatial5" instance=ExtResource( 7 )]
+transform = Transform( 0.934285, 0, -0.356526, 0, 1, 0, 0.356526, 0, 0.934285, 36.2562, -4.76837e-07, 10.3383 )
+
+[node name="Building2" parent="City/Spatial5" instance=ExtResource( 7 )]
+transform = Transform( 0.95191, 0, 0.306377, 0, 1, 0, -0.306377, 0, 0.95191, 36.2141, -1.43051e-06, 0.708323 )
+
+[node name="Building3" parent="City/Spatial5" instance=ExtResource( 7 )]
+transform = Transform( 0.912905, 0, 0.408171, 0, 1, 0, -0.408171, 0, 0.912905, 32.8914, -4.76837e-07, -12.2115 )
+
+[node name="Building4" parent="City/Spatial5" instance=ExtResource( 7 )]
+transform = Transform( 0.683083, 0, 0.730341, 0, 1, 0, -0.730341, 0, 0.683083, 24.9942, -1.43051e-06, -23.668 )
+
+[node name="Tree" parent="City/Spatial5" instance=ExtResource( 8 )]
+transform = Transform( 1.25, 0, 0, 0, 2, 0, 0, 0, 1.25, 28.5166, 0, -21.4091 )
+
+[node name="Fence9" parent="City/Spatial5" instance=ExtResource( 12 )]
+transform = Transform( 0.582123, 0, -0.813101, 0, 1, 0, 0.813101, 0, 0.582123, 25.4628, 3.8147e-06, -19.57 )
+
+[node name="Fence10" parent="City/Spatial5" instance=ExtResource( 12 )]
+transform = Transform( -0.582123, 0, 0.813101, 0, 1, 0, -0.813101, 0, -0.582123, 28.045, 3.8147e-06, -15.9554 )
+
+[node name="Fence11" parent="City/Spatial5" instance=ExtResource( 12 )]
+transform = Transform( 0.483664, 0, -0.875254, 0, 1, 0, 0.875254, 0, 0.483664, 32.0262, 3.8147e-06, -8.36574 )
+
+[node name="Fence12" parent="City/Spatial5" instance=ExtResource( 12 )]
+transform = Transform( 0.499229, 0, 0.86647, 0, 1, 0, -0.86647, 0, 0.499229, 31.9514, 3.8147e-06, -4.35562 )
+
+[node name="Enemy" parent="City" instance=ExtResource( 6 )]
+transform = Transform( -0.970712, 0, -0.240245, 0, 1, 0, 0.240245, 0, -0.970712, 7.74905, 0, -8.51933 )
+
+[node name="Enemy2" parent="City" instance=ExtResource( 6 )]
+transform = Transform( -0.768831, 0, -0.639452, 0, 1, 0, 0.639452, 0, -0.768831, 10.6562, 0, 12.4624 )
+
+[node name="Enemy6" parent="City" instance=ExtResource( 6 )]
+transform = Transform( -0.405189, 0, 0.914233, 0, 1, 0, -0.914233, 0, -0.405189, 19.4696, 0, 0.670138 )
+
+[node name="Enemy3" parent="City" instance=ExtResource( 6 )]
+transform = Transform( -0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -11.7971, 1.90735e-06, -13.7714 )
+
+[node name="Enemy4" parent="City" instance=ExtResource( 6 )]
+transform = Transform( -0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, -17.7971, 1.90735e-06, -17.7714 )
+
+[node name="Enemy5" parent="City" instance=ExtResource( 6 )]
+transform = Transform( -0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, -11.8027, 1.90735e-06, -24.684 )
+
+[node name="Enemy7" parent="City" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 1.19209e-07, 0, 1, 0, -1.19209e-07, 0, 1, 28.1114, 1.90735e-06, 1.56838 )
 
 [node name="UI" parent="." instance=ExtResource( 1 )]
 
 [node name="Hero" parent="." instance=ExtResource( 4 )]
 
 [node name="PlayerCamera" parent="." instance=ExtResource( 5 )]
+current = true
+
+[node name="EndUI" parent="." instance=ExtResource( 11 )]
+[connection signal="rewind" from="." to="PlayerCamera" method="_on_Game_rewind"]

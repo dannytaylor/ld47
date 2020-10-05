@@ -123,3 +123,9 @@ visible = false
 
 [node name="Shingles001" parent="." index="39"]
 visible = false
+
+[node name="Camera" parent="." index="43"]
+visible = false
+
+[node name="Light" parent="." index="44"]
+visible = false
