@@ -3,5 +3,5 @@
 [ext_resource path="res://objects/player/PlayerCamera.gd" type="Script" id=1]
 
 [node name="PlayerCamera" type="Camera"]
-transform = Transform( -1, -2.49609e-07, 2.09447e-07, 0, 0.642788, 0.766044, -3.25841e-07, 0.766044, -0.642788, 0, 13.398, -7.776 )
+transform = Transform( -1, -2.95313e-07, 1.37706e-07, 0, 0.422618, 0.906308, -3.25841e-07, 0.906308, -0.422618, 0, 20, -8 )
 script = ExtResource( 1 )

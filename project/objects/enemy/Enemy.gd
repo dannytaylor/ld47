@@ -52,6 +52,7 @@ func rewind():
 	transform = start_transform
 	$CPUParticles.emitting = false
 	$CPUParticles.visible = false
+	$CPUParticles.restart()
 	
 
 func kill():

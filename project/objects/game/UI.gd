@@ -15,5 +15,5 @@ func _on_gamecontroller_enemies_remaining(count):
 func _on_gamecontroller_time_updated(time):
 	var minutes = int(time) / (60)
 	var seconds = int(time) % (60)
-	var time_string = "%s:%s" % [minutes, seconds]
+	var time_string = "%s:%02d" % [minutes, seconds]
 	$Time.text = time_string
