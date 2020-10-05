@@ -44,6 +44,7 @@ func _process(delta):
 func rewind():
 	
 	#Stop animations
+	$Alert.visible = false
 	$Area.visible = true
 	$Area.monitoring = true
 	
@@ -54,6 +55,8 @@ func rewind():
 	$CPUParticles.emitting = false
 	$CPUParticles.visible = false
 	$CPUParticles.restart()
+	
+	$Killed.visible = kill_state == EnemyKillState.PREVIOUSLY_KILLED
 	
 
 func kill():
@@ -80,5 +83,6 @@ func _on_Area_body_entered(body):
 		#We got 'em
 		body.caught(self)
 		$enemy/AnimationPlayer.play("spotted")
+		$Alert.visible = true
 	
 	pass # Replace with function body.
