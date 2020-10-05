@@ -116,7 +116,7 @@ transform = Transform( 0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.0308576, 0.34497, 0
 material/0 = ExtResource( 3 )
 
 [node name="Alert" type="Sprite3D" parent="."]
-transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 5.58134, 0 )
+transform = Transform( 2.2, 0, 0, 0, 2.2, 0, 0, 0, 2.2, 0, 5.58134, 0 )
 visible = false
 modulate = Color( 0.913725, 0.129412, 0.403922, 1 )
 billboard = 1

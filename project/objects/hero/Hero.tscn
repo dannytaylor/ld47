@@ -168,5 +168,6 @@ anims/char_run = ExtResource( 3 )
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
 stream = ExtResource( 7 )
+volume_db = -7.0
 
 [editable path="character"]
