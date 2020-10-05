@@ -97,6 +97,11 @@ func game_end():
 	time_paused = true
 	game_over = true
 	
+	var minutes = int(elapsed_time) / (60)
+	var seconds = int(elapsed_time) % (60)
+	var time_string = "%s:%02d" % [minutes, seconds]
+	$EndUI/Label.text = time_string
+	
 	#Connect contract enders
 	for phantom in get_tree().get_nodes_in_group("phantom"):
 		phantom.connect("contract_complete", self, "_on_contract_complete")
