@@ -1,6 +1,29 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://img/playfont.tres" type="DynamicFont" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Button
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+
+
+func _on_Button_pressed():
+	get_tree().reload_current_scene()
+"
 
 [node name="EndUI" type="Control"]
 visible = false
@@ -30,3 +53,5 @@ grow_vertical = 0
 custom_fonts/font = ExtResource( 1 )
 text = "PLAY AGAIN"
 flat = true
+script = SubResource( 1 )
+[connection signal="pressed" from="Button" to="Button" method="_on_Button_pressed"]
