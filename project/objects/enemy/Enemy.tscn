@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://objects/enemy/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://meshes/enemy.gltf" type="PackedScene" id=2]
 [ext_resource path="res://objects/player/sight_radius_material.tres" type="Material" id=3]
+[ext_resource path="res://meshes/black_outline.material" type="Material" id=4]
 
 [sub_resource type="CapsuleMesh" id=1]
 material = ExtResource( 3 )
@@ -12,7 +13,7 @@ material = ExtResource( 3 )
 [sub_resource type="SpatialMaterial" id=3]
 flags_transparent = true
 flags_unshaded = true
-albedo_color = Color( 1, 0.72549, 0, 0.294118 )
+albedo_color = Color( 0.921569, 0.921569, 0.921569, 0.294118 )
 
 [sub_resource type="ConvexPolygonShape" id=4]
 points = PoolVector3Array( 0, 0, 0, 3, 0, 10, 2, 0, 11.5, 1, 0, 11.85, 0, 0, 12, -1, 0, 11.85, -2, 0, 11.5, -3, 0, 10, 0, 1.352, 0 )
@@ -50,8 +51,8 @@ material/0 = null
 ]]
 
 [node name="Spatial" type="CSGPolygon" parent="Area"]
-transform = Transform( -1, 4.37114e-08, 4.37114e-08, -4.37114e-08, 4.37114e-08, -1, -4.37114e-08, -1, -4.37114e-08, 0, 0, 0 )
-polygon = PoolVector2Array( 0, 0, 3, -10, 2, -11.5, 1, -11.85, 0, -12, -1, -11.85, -2, -11.5, -3, -10 )
+transform = Transform( -1, 4.37114e-08, 4.37114e-08, -4.37114e-08, 4.37114e-08, -1, -4.37114e-08, -1, -4.37114e-08, 0, 0.616244, 0.64743 )
+polygon = PoolVector2Array( 0, 0, 3, -10, 2.3889, -11.4365, 1, -11.85, 0, -12, -1, -11.85, -2.26559, -11.2872, -3, -10 )
 depth = 0.997
 material = SubResource( 3 )
 

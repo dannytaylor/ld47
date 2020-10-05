@@ -6,16 +6,24 @@
 [ext_resource path="res://objects/player/PlayerCamera.tscn" type="PackedScene" id=4]
 [ext_resource path="res://objects/enemy/Enemy.tscn" type="PackedScene" id=5]
 [ext_resource path="res://objects/game/GameController.gd" type="Script" id=6]
+[ext_resource path="res://img/playfont.tres" type="DynamicFont" id=7]
 [ext_resource path="res://objects/game/UI.tscn" type="PackedScene" id=7]
 [ext_resource path="res://objects/game/EndUI.tscn" type="PackedScene" id=8]
 
-[node name="DevinTest" type="Spatial" groups=[
-"gamecontroller",
-]]
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.0666667, 0.0666667, 0.0666667, 1 )
+
+[sub_resource type="PlaneMesh" id=2]
+material = SubResource( 1 )
+size = Vector2( 500, 500 )
+
+[node name="DevinTest" type="Spatial"]
 pause_mode = 2
 script = ExtResource( 6 )
 
 [node name="Ground" parent="." instance=ExtResource( 1 )]
+mesh = SubResource( 2 )
+material/0 = null
 
 [node name="Hero" parent="." instance=ExtResource( 2 )]
 
@@ -32,6 +40,39 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.198, -0.203, 12.122 )
 transform = Transform( -1, 2.95312e-07, -1.37706e-07, 0, 0.422618, 0.906308, 3.25841e-07, 0.906308, -0.422618, 0, 20, -8 )
 current = true
 
-[node name="UI" parent="." instance=ExtResource( 7 )]
+[node name="UI" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="EndUI" parent="." instance=ExtResource( 8 )]
+
+[node name="Time" type="Label" parent="UI"]
+margin_left = -141.599
+margin_top = -330.942
+margin_right = 132.401
+margin_bottom = -252.942
+custom_fonts/font = ExtResource( 7 )
+text = "00:00"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+margin_left = -127.0
+margin_top = 305.0
+margin_right = 1151.0
+margin_bottom = 654.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_scale = Vector2( 0.2, 0.2 )
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
