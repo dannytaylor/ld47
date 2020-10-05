@@ -116,14 +116,14 @@ transform = Transform( 0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.0308576, 0.34497, 0
 material/0 = ExtResource( 3 )
 
 [node name="Alert" type="Sprite3D" parent="."]
-transform = Transform( 2.2, 0, 0, 0, 2.2, 0, 0, 0, 2.2, 0, 5.58134, 0 )
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 5.58134, 0 )
 visible = false
 modulate = Color( 0.913725, 0.129412, 0.403922, 1 )
 billboard = 1
 texture = ExtResource( 4 )
 
 [node name="Killed" type="Sprite3D" parent="."]
-transform = Transform( 3, 0, 0, 0, -1.31134e-07, 3, 0, -3, -1.31134e-07, 0, 0.1, 0 )
+transform = Transform( 2.2, 0, 0, 0, -9.61651e-08, 2.2, 0, -2.2, -9.61651e-08, 0, 0.1, 0 )
 visible = false
 modulate = Color( 0.894118, 0.25098, 0.341176, 1 )
 texture = ExtResource( 5 )
