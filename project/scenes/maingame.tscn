@@ -297,7 +297,9 @@ transform = Transform( 1, 0, 1.19209e-07, 0, 1, 0, -1.19209e-07, 0, 1, 28.1114, 
 [node name="Hero" parent="." instance=ExtResource( 4 )]
 
 [node name="PlayerCamera" parent="." instance=ExtResource( 5 )]
+transform = Transform( -1, -2.95312e-07, 1.37706e-07, 0, 0.422618, 0.906308, -3.25841e-07, 0.906308, -0.422618, 0, 20, -8 )
 current = true
+fov = 35.0
 
 [node name="EndUI" parent="." instance=ExtResource( 11 )]
 [connection signal="rewind" from="." to="PlayerCamera" method="_on_Game_rewind"]
