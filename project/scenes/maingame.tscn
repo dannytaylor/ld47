@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://objects/game/UI.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/game/GameController.gd" type="Script" id=2]
@@ -12,7 +12,6 @@
 [ext_resource path="res://objects/buildings/Fence-Tall.tscn" type="PackedScene" id=10]
 [ext_resource path="res://objects/game/EndUI.tscn" type="PackedScene" id=11]
 [ext_resource path="res://objects/buildings/Fence.tscn" type="PackedScene" id=12]
-[ext_resource path="res://objects/buildings/Tree.glb" type="PackedScene" id=13]
 
 [sub_resource type="BoxShape" id=1]
 extents = Vector3( 0.282239, 1, 13.6215 )
@@ -31,24 +30,6 @@ script = ExtResource( 2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0297146, 0.0136204, 0.0038805 )
 
 [node name="Spatial6" type="Spatial" parent="City"]
-
-[node name="Tree" parent="City/Spatial6" instance=ExtResource( 13 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.627026, 0, 20.0646 )
-
-[node name="Tree2" parent="City/Spatial6" instance=ExtResource( 13 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -4.23073, 0, 17.194 )
-
-[node name="Tree3" parent="City/Spatial6" instance=ExtResource( 13 )]
-transform = Transform( 0.607625, 0, 0.794224, 0, 1, 0, -0.794224, 0, 0.607625, -6.4897, 0, 13.1547 )
-
-[node name="Tree4" parent="City/Spatial6" instance=ExtResource( 13 )]
-transform = Transform( 0.863123, 0, 0.793154, 0, 1.17221, 0, -0.793154, 0, 0.863123, -7.63111, 0, 10.6608 )
-
-[node name="Tree5" parent="City/Spatial6" instance=ExtResource( 13 )]
-transform = Transform( 0.256068, 0, -0.849693, 0, 0.88744, 0, 0.849693, 0, 0.256068, -12.4889, 0, 7.79017 )
-
-[node name="Tree6" parent="City/Spatial6" instance=ExtResource( 13 )]
-transform = Transform( 0.950069, 0, 0.248874, 0, 0.982125, 0, -0.248874, 0, 0.950069, -14.7478, 0, 3.75085 )
 
 [node name="StaticBody" type="StaticBody" parent="City/Spatial6"]
 collision_mask = 3
@@ -92,6 +73,12 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0 )
 
 [node name="Tree" parent="City/Spatial3" instance=ExtResource( 8 )]
 transform = Transform( 1.25, 0, 0, 0, 2, 0, 0, 0, 1.25, -9.44142, 0, 0 )
+
+[node name="Tree2" parent="City/Spatial3" instance=ExtResource( 8 )]
+transform = Transform( 0.799399, 0, 0.960969, 0, 2, 0, -0.960969, 0, 0.799399, -6.86979, -2.15734, 9.51111 )
+
+[node name="Tree3" parent="City/Spatial3" instance=ExtResource( 8 )]
+transform = Transform( -0.00509634, 0, 0.999987, 0, 1.5, 0, -0.999987, 0, -0.00509634, 1.31188, -1.40112, 18.7624 )
 
 [node name="Building" parent="City/Spatial3" instance=ExtResource( 7 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 18.7872, 0, 5.49337 )

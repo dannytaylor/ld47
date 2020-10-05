@@ -100,6 +100,6 @@ nodes/fragment/connections = PoolIntArray( 3, 0, 4, 0, 2, 0, 4, 1, 4, 0, 5, 1, 6
 [resource]
 resource_name = "Player Sight Material"
 shader = SubResource( 9 )
-shader_param/Color = Color( 0, 0, 0, 1 )
+shader_param/Color = Color( 1, 1, 1, 1 )
 shader_param/SourcePosition = Vector3( 0, 0, 0 )
 shader_param/MaxDistance = 0.0
