@@ -5,7 +5,7 @@ const GameScene = preload("res://scenes/maingame.tscn")
 onready var play_button = $UI/play_button
 onready var play_shadow1 = $UI/play_button/play_shadow1
 onready var play_shadow2 = $UI/play_button/play_shadow2
-onready var black_material = preload("res://meshes/black.material")
+onready var black_material = preload("res://meshes/Black.material")
 
 var text_speed = 40
 var text_offset = 160
