@@ -1,6 +1,8 @@
 extends KinematicBody
 class_name Hero
 
+const CaughtSFX = preload("res://objects/hero/whistle_med_R_to_L_001.wav")
+
 signal rewind(target)
 
 var facing : Vector3 = Vector3.FORWARD
@@ -176,6 +178,13 @@ func _animate_slash():
 func caught(enemy):
 	
 	#We want to rewind now that we've been caught
+	
+	#Pause for dramatic effect
+	$character/AnimationPlayer.play("char_idle")
+	player_controllable = false
+	$AudioStreamPlayer.stream = CaughtSFX
+	$AudioStreamPlayer.play()
+	yield($AudioStreamPlayer, "finished")
 	rewind()
 
 func _on_GameController_rewind():
